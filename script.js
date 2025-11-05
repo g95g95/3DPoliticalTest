@@ -226,6 +226,7 @@ function setupAccessGate(onSuccess) {
     unlocked = true;
     overlay.classList.add('hidden');
     overlay.setAttribute('aria-hidden', 'true');
+    overlay.style.display = 'none';
     if (app) {
       app.removeAttribute('aria-hidden');
     }
