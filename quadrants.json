@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "name": "Liberal istituzionale",
+    "content": "Equilibrio tra mercato aperto e diritti civili con forte fiducia nelle istituzioni esistenti.",
+    "bounds": { "phi": [0, 90], "theta": [0, 45] },
+    "affiliazionepolitica": ["Renew Europe", "Partito Radicale storico"]
+  },
+  {
+    "id": 2,
+    "name": "Liberal pragmatico",
+    "content": "Approccio liberale ai diritti e all'economia ma con una vena riformista critica verso lo status quo.",
+    "bounds": { "phi": [0, 90], "theta": [45, 90] },
+    "affiliazionepolitica": ["Partito Democratico (ala riformista)", "Liberali sociali"]
+  },
+  {
+    "id": 3,
+    "name": "Liberal critico",
+    "content": "Difesa di diritti individuali e mercato concorrenziale accompagnata da controllo vigile sulle istituzioni.",
+    "bounds": { "phi": [0, 90], "theta": [90, 135] },
+    "affiliazionepolitica": ["Open Society movements", "Società civile europeista"]
+  },
+  {
+    "id": 4,
+    "name": "Liberal movimentista",
+    "content": "Impostazione liberale e cosmopolita che ricerca cambiamenti rapidi anche contro le istituzioni consolidate.",
+    "bounds": { "phi": [0, 90], "theta": [135, 180] },
+    "affiliazionepolitica": ["Volt Europa", "Movimenti libertari progressisti"]
+  },
+  {
+    "id": 5,
+    "name": "Conservatore istituzionale",
+    "content": "Valorizzazione del mercato e dell'ordine sociale con forte sostegno allo status quo istituzionale.",
+    "bounds": { "phi": [90, 180], "theta": [0, 45] },
+    "affiliazionepolitica": ["Partito Popolare Europeo", "Moderati liberali-conservatori"]
+  },
+  {
+    "id": 6,
+    "name": "Conservatore pragmatico",
+    "content": "Tradizionalismo sociale e mercato aperto temperati da richieste di riforma graduale.",
+    "bounds": { "phi": [90, 180], "theta": [45, 90] },
+    "affiliazionepolitica": ["Forza Italia", "Conservatori liberali"]
+  },
+  {
+    "id": 7,
+    "name": "Conservatore critico",
+    "content": "Sostegno all'ordine e alla concorrenza ma con crescente sfiducia verso l'establishment centrale.",
+    "bounds": { "phi": [90, 180], "theta": [90, 135] },
+    "affiliazionepolitica": ["Partiti conservatori euroscettici", "Tea Party"]
+  },
+  {
+    "id": 8,
+    "name": "Conservatore populista",
+    "content": "Visione nazional-conservatrice e mercatista che sfida apertamente le istituzioni tradizionali.",
+    "bounds": { "phi": [90, 180], "theta": [135, 180] },
+    "affiliazionepolitica": ["Fratelli d'Italia", "Law and Justice"]
+  },
+  {
+    "id": 9,
+    "name": "Statalista istituzionale",
+    "content": "Intervento pubblico e ordine sociale coordinati con piena fiducia nelle strutture statali.",
+    "bounds": { "phi": [180, 270], "theta": [0, 45] },
+    "affiliazionepolitica": ["Partito Comunista Cinese", "Socialdemocrazie classiciste"]
+  },
+  {
+    "id": 10,
+    "name": "Statalista pragmatico",
+    "content": "Regolazione economica e valori tradizionali accompagnati da istanze riformiste moderate.",
+    "bounds": { "phi": [180, 270], "theta": [45, 90] },
+    "affiliazionepolitica": ["Partito Laburista (ala tradizionale)", "Peronismo moderato"]
+  },
+  {
+    "id": 11,
+    "name": "Statalista critico",
+    "content": "Preferenza per stato forte e ordine sociale ma con toni anti-establishment verso élite consolidate.",
+    "bounds": { "phi": [180, 270], "theta": [90, 135] },
+    "affiliazionepolitica": ["Sinistra patriottica", "Partiti red-brown"]
+  },
+  {
+    "id": 12,
+    "name": "Statalista movimentista",
+    "content": "Populismo sociale che richiede intervento pubblico incisivo e contestazione dura dell'establishment.",
+    "bounds": { "phi": [180, 270], "theta": [135, 180] },
+    "affiliazionepolitica": ["Chavismo", "Movimenti socialisti bolivariani"]
+  },
+  {
+    "id": 13,
+    "name": "Solidale istituzionale",
+    "content": "Intervento statale per diritti e welfare con forte cooperazione con le istituzioni liberaldemocratiche.",
+    "bounds": { "phi": [270, 360], "theta": [0, 45] },
+    "affiliazionepolitica": ["Socialdemocrazia nordica", "Verdi moderati"]
+  },
+  {
+    "id": 14,
+    "name": "Solidale pragmatico",
+    "content": "Diritti civili ampliati e welfare universale con richieste riformiste verso il sistema vigente.",
+    "bounds": { "phi": [270, 360], "theta": [45, 90] },
+    "affiliazionepolitica": ["Sinistra riformista", "Democratici USA ala progressista"]
+  },
+  {
+    "id": 15,
+    "name": "Solidale critico",
+    "content": "Visione solidale e libertaria che guarda con sospetto le istituzioni esistenti chiedendo maggiore partecipazione.",
+    "bounds": { "phi": [270, 360], "theta": [90, 135] },
+    "affiliazionepolitica": ["Movimenti municipalisti", "Podemos (origini)"]
+  },
+  {
+    "id": 16,
+    "name": "Solidale movimentista",
+    "content": "Intersezione tra giustizia sociale e diritti civili con spinta radicale anti-establishment.",
+    "bounds": { "phi": [270, 360], "theta": [135, 180] },
+    "affiliazionepolitica": ["Fridays for Future", "Democratic Socialists of America"]
+  }
+]
