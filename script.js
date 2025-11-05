@@ -426,6 +426,7 @@ const ANSWER_LABELS = ['Sì molto', 'Sì', 'Non so', 'No', 'No molto'];
 const ANSWER_VALUES = [1, 0.5, 0, -0.5, -1];
 
 let QUADRANT_DATA = [];
+let quadrantsPromise = null;
 
 function componentToAxis(component) {
   if (!component) return null;
@@ -560,17 +561,33 @@ function getQuadrantLegend() {
   }));
 }
 
-async function loadQuadrants() {
-  try {
-    const res = await fetch('quadrants.json?cb=' + Date.now());
-    if (!res.ok) throw new Error(res.statusText);
-    const data = await res.json();
-    if (Array.isArray(data)) {
-      QUADRANT_DATA = data;
+function loadQuadrants() {
+  if (quadrantsPromise) {
+    return quadrantsPromise;
+  }
+  quadrantsPromise = (async () => {
+    try {
+      const res = await fetch('quadrants.json?cb=' + Date.now());
+      if (!res.ok) throw new Error(res.statusText);
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        QUADRANT_DATA = data;
+      } else {
+        QUADRANT_DATA = [];
+      }
+    } catch (err) {
+      console.warn('Impossibile caricare i dati dei quadranti', err);
+      QUADRANT_DATA = [];
     }
+  })();
+  return quadrantsPromise;
+}
+
+async function ensureQuadrantsLoaded() {
+  try {
+    await loadQuadrants();
   } catch (err) {
-    console.warn('Impossibile caricare i dati dei quadranti', err);
-    QUADRANT_DATA = [];
+    console.warn('Errore durante il caricamento dei quadranti', err);
   }
 }
 
@@ -1235,10 +1252,11 @@ function computeResults() {
  *  a placeholder description.  Provides buttons to view insights,
  *  restart the test, and leave a review.
  */
-function viewResult() {
+async function viewResult() {
   state.step = 4;
   // Salva il risultato corrente la prima volta che si arriva qui
   persistCurrentResult();
+  await ensureQuadrantsLoaded();
   // Calcola il quadrante e prepara la descrizione
   const result = computeResults();
   const { quadrant16, descriptor, color, normalized } = result;
@@ -1312,9 +1330,10 @@ function viewResult() {
  * coordinates, quadrant, and a Three.js visualization.  Provides
  * buttons to go back to the minimal result and to restart the test.
  */
-function viewInsights() {
+async function viewInsights() {
   state.step = 5;
   persistCurrentResult();
+  await ensureQuadrantsLoaded();
   const res = computeResults();
   const { r, phiDeg, thetaDeg, quadrant16, descriptor, color, normalized, raw, quadrantInfo, rawRadius } = res;
   const totals = state.weightTotals || { economia: 0, dirittocivilismo: 0, establishment: 0 };
