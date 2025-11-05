@@ -4,6 +4,9 @@ import { OrbitControls } from './lib/OrbitControls.js';
 // Reference to the root app container
 const app = document.getElementById('app');
 
+const MAGIC_WORD = 'mellon';
+const MAX_ACCESS_ATTEMPTS = 3;
+
 // Supported languages and metadata used in the language selector
 const LANGUAGES = [
   { code: 'it', name: 'Italiano', flag: { src: 'assets/flags/it.svg', alt: 'Bandiera italiana' } },
@@ -179,6 +182,103 @@ async function loadQuadrants() {
     console.warn('Impossibile caricare i dati dei quadranti', err);
     QUADRANT_DATA = [];
   }
+}
+
+function setupAccessGate(onSuccess) {
+  const overlay = document.getElementById('accessOverlay');
+  const form = document.getElementById('accessForm');
+  const errorView = document.getElementById('accessError');
+  const input = document.getElementById('magicWord');
+  const button = document.getElementById('accessSubmit');
+  const message = document.getElementById('accessMessage');
+
+  if (!overlay || !form || !input || !button) {
+    if (overlay) {
+      overlay.classList.add('hidden');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+    if (app) {
+      app.removeAttribute('aria-hidden');
+    }
+    if (typeof onSuccess === 'function') {
+      onSuccess();
+    }
+    return;
+  }
+
+  let attempts = 0;
+  let unlocked = false;
+
+  const showMessage = (text, tone = 'error') => {
+    if (!message) return;
+    message.textContent = text;
+    if (tone === 'success') {
+      message.style.color = '#16a34a';
+    } else if (tone === 'neutral') {
+      message.style.color = '#4b5563';
+    } else {
+      message.style.color = '#ef4444';
+    }
+  };
+
+  const unlock = () => {
+    if (unlocked) return;
+    unlocked = true;
+    overlay.classList.add('hidden');
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.style.display = 'none';
+    if (app) {
+      app.removeAttribute('aria-hidden');
+    }
+    if (typeof onSuccess === 'function') {
+      onSuccess();
+    }
+  };
+
+  const lockOut = () => {
+    form.classList.add('hidden');
+    if (errorView) {
+      errorView.classList.remove('hidden');
+    }
+    button.disabled = true;
+    input.disabled = true;
+  };
+
+  const verify = () => {
+    if (unlocked) return;
+    const value = (input.value || '').trim().toLowerCase();
+    if (!value) {
+      showMessage('Serve la parola magica per entrare.', 'neutral');
+      return;
+    }
+    if (value === MAGIC_WORD) {
+      showMessage('Benvenuto, amico.', 'success');
+      unlock();
+      return;
+    }
+    attempts += 1;
+    input.value = '';
+    showMessage('Questa non è la parola giusta.', 'error');
+    if (attempts >= MAX_ACCESS_ATTEMPTS) {
+      lockOut();
+    } else {
+      input.focus();
+    }
+  };
+
+  button.addEventListener('click', verify);
+  input.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      verify();
+    }
+  });
+
+  showMessage('', 'neutral');
+  overlay.setAttribute('aria-hidden', 'false');
+  setTimeout(() => {
+    input.focus();
+  }, 100);
 }
 
 /* --------------------------------------------------------------------------
@@ -1028,6 +1128,8 @@ function initCartesianPlot(mount, point, options = {}) {
 
 // Initialize the application when the DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  loadQuadrants();
-  viewLanguage();
+  setupAccessGate(() => {
+    loadQuadrants();
+    viewLanguage();
+  });
 });
