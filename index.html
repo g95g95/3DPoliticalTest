@@ -44,6 +44,110 @@
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
+
+        #accessOverlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: radial-gradient(circle at top, rgba(79, 70, 229, 0.1), rgba(15, 23, 42, 0.6));
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+        }
+
+        .access-card {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        .access-card h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .access-card p {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+
+        .access-card input {
+            width: 100%;
+            border: 1px solid #c7d2fe;
+            border-radius: 9999px;
+            padding: 0.9rem 1.25rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .access-card input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+        }
+
+        .access-card button {
+            width: 100%;
+            border: none;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #4338ca, #6366f1);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.9rem 1.25rem;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.2s ease;
+        }
+
+        .access-card button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+        }
+
+        .access-card button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .access-card .message {
+            min-height: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .access-error {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .access-error h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ef4444;
+        }
+
+        .access-error p {
+            color: #1f2937;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .access-card {
+                padding: 2rem 1.5rem;
+                border-radius: 18px;
+            }
+        }
         /* Contenitore della sfera: avrà altezza flessibile */
         #sphereMount {
             width: 100%;
@@ -56,7 +160,21 @@
     </style>
 </head>
 <body class="min-h-screen">
-    <div id="app" class="max-w-4xl mx-auto py-12 px-4"></div>
+    <div id="accessOverlay" role="dialog" aria-modal="true" aria-labelledby="accessTitle">
+        <div id="accessForm" class="access-card" aria-live="polite">
+            <h1 id="accessTitle">Solo gli amici possono entrare</h1>
+            <p>Inserisci la parola magica per continuare.</p>
+            <input id="magicWord" type="password" autocomplete="off" spellcheck="false" placeholder="Parola magica" aria-label="Parola magica" />
+            <button id="accessSubmit" type="button">Entra</button>
+            <div id="accessMessage" class="message" role="status"></div>
+        </div>
+        <div id="accessError" class="access-card access-error hidden" role="alert">
+            <h2>Accesso negato</h2>
+            <p>Hai esaurito i tentativi consentiti.</p>
+            <p class="text-sm text-gray-500">Solo chi conosce la parola magica può entrare.</p>
+        </div>
+    </div>
+    <div id="app" class="max-w-4xl mx-auto py-12 px-4" aria-hidden="true"></div>
 
 
     <!-- App -->
