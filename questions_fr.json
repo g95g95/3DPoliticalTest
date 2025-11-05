@@ -1,322 +1,322 @@
 [
   {
-    "title": "Ceci est la question générique numéro 1.",
+    "title": "L'État devrait réduire drastiquement les impôts des entreprises pour stimuler la croissance.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 2.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 3.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 4.",
+    "title": "Le gouvernement devrait nationaliser les secteurs énergétiques stratégiques.",
     "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 5.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 6.",
-    "weights": {
-      "economia": 0,
+      "economia": -1,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 7.",
+    "title": "Les syndicats devraient disposer d'un plus grand pouvoir de veto dans les décisions des entreprises.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Les plateformes numériques devraient pouvoir modérer les contenus sans ingérence de l'État.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 8.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
+      "establishment": 1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 9.",
+    "title": "Le mariage devrait être défini uniquement comme l'union entre un homme et une femme.",
     "weights": {
       "economia": 0,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "L'État doit instaurer un revenu de base universel financé par des impôts progressifs.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "La police devrait disposer de pouvoirs de surveillance plus étendus sans mandat.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Les entreprises étrangères devraient être encouragées à investir dans le pays.",
+    "weights": {
+      "economia": 1,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 10.",
+    "title": "Les écoles devraient pouvoir choisir leurs programmes de manière autonome sans intervention ministérielle.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 11.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
+      "establishment": -1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 12.",
+    "title": "L'immigration doit être limitée même au prix d'une réduction de la main-d'œuvre.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Les entreprises publiques inefficaces devraient être fermées même si cela entraîne des licenciements.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Les universités devraient être gratuites pour tous les étudiants.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Les minorités linguistiques devraient pouvoir utiliser leur langue dans chaque administration publique.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Le parlement devrait pouvoir révoquer rapidement les juges constitutionnels.",
     "weights": {
       "economia": 0,
+      "dirittocivilismo": -1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "La politique industrielle doit protéger les entreprises nationales contre les concurrents étrangers.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Les décisions sanitaires pendant une pandémie doivent revenir à un comité technique permanent.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "La fiscalité sur les patrimoines hérités devrait augmenter sensiblement.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Les services publics devraient être privatisés si le secteur privé peut les fournir à moindre coût.",
+    "weights": {
+      "economia": 1,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 13.",
+    "title": "Il est acceptable de bloquer les infrastructures pour protester contre le gouvernement.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "L'État doit financer les écoles religieuses.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Les traités européens devraient encadrer strictement le budget national.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 14.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 15.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 16.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 17.",
+    "title": "Les citoyens devraient disposer de référendums contraignants sur toutes les lois importantes.",
     "weights": {
       "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
+      "establishment": -1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 18.",
+    "title": "Les entreprises devraient être tenues de donner une représentation aux travailleurs dans leurs conseils d'administration.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Les forces armées ont besoin d'une forte augmentation de budget.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Les drogues douces devraient être légalisées et taxées.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Il faut imposer des droits environnementaux sur les importations polluantes.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Les médias publics doivent rester indépendants du gouvernement même lorsqu'ils critiquent les institutions.",
     "weights": {
       "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "La dette publique peut augmenter pour financer de grands projets d'infrastructure.",
+    "weights": {
+      "economia": -1,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 19.",
+    "title": "Les grandes entreprises technologiques doivent être démantelées pour éviter les monopoles.",
     "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 20.",
+    "title": "L'âge de la retraite doit être abaissé même si la dépense publique augmente.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Les ONG devraient participer à la gestion des centres pour migrants.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Les autorités locales devraient bénéficier d'une plus grande autonomie fiscale.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "La reconnaissance légale des familles homoparentales doit être complète.",
     "weights": {
       "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
+      "establishment": -1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 21.",
+    "title": "Les accords de libre-échange favorisent le bien-être général.",
     "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
+      "economia": 1,
+      "dirittocivilismo": 1,
       "establishment": 1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 22.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 23.",
+    "title": "Les peines de prison devraient être plus sévères et plus longues.",
     "weights": {
       "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 24.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
+      "dirittocivilismo": -1,
       "establishment": 1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 25.",
+    "title": "Le gouvernement devrait soutenir les coopératives et les entreprises mutualistes par des allégements fiscaux.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Les plateformes de vote électronique devraient remplacer le vote traditionnel sur papier.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 26.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 27.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 28.",
+    "title": "Le financement public des partis devrait être aboli.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 29.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
+      "establishment": -1
     }
   },
   {
-    "title": "Ceci est la question générique numéro 30.",
+    "title": "Le gouvernement doit intervenir pour plafonner les loyers dans les grandes villes.",
     "weights": {
-      "economia": 0,
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Les alliances militaires internationales garantissent notre sécurité.",
+    "weights": {
+      "economia": 1,
       "dirittocivilismo": 0,
       "establishment": 1
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 31.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 32.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 33.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 34.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 35.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 36.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 37.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 38.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 39.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Ceci est la question générique numéro 40.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
     }
   }
 ]

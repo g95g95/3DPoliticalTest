@@ -27,6 +27,18 @@ Non è necessaria alcuna installazione server-side: basta un browser moderno con
    ```
 3. Apri il browser su [http://localhost:8000](http://localhost:8000) e seleziona la lingua desiderata.
 
+## Pubblicazione su GitHub Pages
+
+1. Effettua il push del contenuto della cartella nel repository GitHub.
+2. Vai in **Settings → Pages** del repository.
+3. Nel riquadro **Build and deployment**:
+   - imposta **Source** su **Deploy from a branch**;
+   - scegli il branch principale (ad esempio `main`) nel menu **Branch**;
+   - lascia `/(root)` come cartella e clicca su **Save**.
+4. Attendi che GitHub completi il deploy: la pagina mostrerà il link pubblico appena pronto.
+5. Visita l'URL per verificare che il questionario funzioni come in locale.
+6. Se vuoi disattivare il sito in futuro, torna nella stessa pagina e imposta **Source** su **None**.
+
 ## Struttura del progetto
 
 ```
@@ -40,7 +52,7 @@ Non è necessaria alcuna installazione server-side: basta un browser moderno con
 
 ## Personalizzazione
 
-- **Domande**: aggiungi o modifica i file `questions_<lang>.json` seguendo la struttura esistente (`prompt`, `axis`, `value`). Le modifiche vengono caricate dinamicamente dal browser.
+- **Domande**: aggiungi o modifica i file `questions_<lang>.json` seguendo la struttura esistente (`title` e oggetto `weights` con le chiavi `economia`, `dirittocivilismo`, `establishment`). Le modifiche vengono caricate dinamicamente dal browser.
 - **Nuove lingue**: aggiungi un file `questions_<codice>.json` e inserisci la nuova lingua nell'array `LANGUAGES` in `script.js`.
 - **Aspetto grafico**: l'interfaccia usa Tailwind tramite CDN, per cui è possibile intervenire direttamente sui template in `script.js` o aggiungere CSS in `index.html`.
 

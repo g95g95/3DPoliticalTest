@@ -1,322 +1,322 @@
 [
   {
-    "title": "This is the generic question number 1.",
+    "title": "The state should sharply cut corporate taxes to spur growth.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 2.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 3.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "This is the generic question number 4.",
+    "title": "The government should nationalize strategic energy sectors.",
     "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 5.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 6.",
-    "weights": {
-      "economia": 0,
+      "economia": -1,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "This is the generic question number 7.",
+    "title": "Trade unions should wield greater veto power over corporate decisions.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Digital platforms should be free to moderate content without state interference.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 8.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
+      "establishment": 1
     }
   },
   {
-    "title": "This is the generic question number 9.",
+    "title": "Marriage should be defined solely as between a man and a woman.",
     "weights": {
       "economia": 0,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "The state must introduce a universal basic income financed with progressive taxes.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Police should have broader surveillance powers without a warrant.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Foreign companies ought to receive incentives to invest in the country.",
+    "weights": {
+      "economia": 1,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "This is the generic question number 10.",
+    "title": "Schools should be able to choose their curricula autonomously without ministerial intervention.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 11.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
+      "establishment": -1
     }
   },
   {
-    "title": "This is the generic question number 12.",
+    "title": "Immigration must be limited even if the workforce shrinks.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Inefficient state-owned enterprises should be closed even when it causes layoffs.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Universities should be free for all students.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Linguistic minorities should be able to use their own language in every public office.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Parliament should be able to swiftly dismiss constitutional judges.",
     "weights": {
       "economia": 0,
+      "dirittocivilismo": -1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Industrial policy must shield domestic firms from foreign competitors.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Health decisions during a pandemic should rest with a permanent technical committee.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Taxes on inherited wealth should rise substantially.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Public services should be privatized if the private sector can deliver them at lower cost.",
+    "weights": {
+      "economia": 1,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "This is the generic question number 13.",
+    "title": "Blocking infrastructure to protest against the government is acceptable.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "The state must fund religious schools.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "European treaties should strictly constrain the national budget.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 14.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 15.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "This is the generic question number 16.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 17.",
+    "title": "Citizens should have binding referendums on every major law.",
     "weights": {
       "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
+      "establishment": -1
     }
   },
   {
-    "title": "This is the generic question number 18.",
+    "title": "Companies should be required to give workers representation on their boards.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "The armed forces need a large budget increase.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": -1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Soft drugs should be legalized and taxed.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Environmental tariffs should be imposed on polluting imports.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Public broadcasters must remain independent from government even when they criticize institutions.",
     "weights": {
       "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Public debt may grow to finance major infrastructure projects.",
+    "weights": {
+      "economia": -1,
       "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "This is the generic question number 19.",
+    "title": "Big tech companies must be broken up to prevent monopolies.",
     "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
     }
   },
   {
-    "title": "This is the generic question number 20.",
+    "title": "The retirement age should be lowered even if public spending rises.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "NGOs should help manage migrant reception centers.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Local authorities should enjoy greater fiscal autonomy.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "The legal recognition of same-sex parent families must be complete.",
     "weights": {
       "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
+      "establishment": -1
     }
   },
   {
-    "title": "This is the generic question number 21.",
+    "title": "Free trade agreements promote overall prosperity.",
     "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
+      "economia": 1,
+      "dirittocivilismo": 1,
       "establishment": 1
     }
   },
   {
-    "title": "This is the generic question number 22.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 23.",
+    "title": "Prison sentences should be harsher and longer.",
     "weights": {
       "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 24.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
+      "dirittocivilismo": -1,
       "establishment": 1
     }
   },
   {
-    "title": "This is the generic question number 25.",
+    "title": "Government should support cooperatives and mutual enterprises through tax breaks.",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "Electronic voting platforms should replace traditional paper ballots.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 26.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 27.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
       "establishment": 1
     }
   },
   {
-    "title": "This is the generic question number 28.",
+    "title": "Public funding for political parties should be abolished.",
     "weights": {
       "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 29.",
-    "weights": {
-      "economia": 0,
       "dirittocivilismo": 1,
-      "establishment": 0
+      "establishment": -1
     }
   },
   {
-    "title": "This is the generic question number 30.",
+    "title": "Government must intervene to cap rents in major cities.",
     "weights": {
-      "economia": 0,
+      "economia": -1,
+      "dirittocivilismo": 1,
+      "establishment": -1
+    }
+  },
+  {
+    "title": "International military alliances guarantee our security.",
+    "weights": {
+      "economia": 1,
       "dirittocivilismo": 0,
       "establishment": 1
-    }
-  },
-  {
-    "title": "This is the generic question number 31.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 32.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 33.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "This is the generic question number 34.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 35.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 36.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "This is the generic question number 37.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 38.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "This is the generic question number 39.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "This is the generic question number 40.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
     }
   }
 ]
