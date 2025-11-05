@@ -6,11 +6,11 @@ const app = document.getElementById('app');
 
 // Supported languages and metadata used in the language selector
 const LANGUAGES = [
-  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
+  { code: 'it', name: 'Italiano', flag: { src: 'assets/flags/it.svg', alt: 'Bandiera italiana' } },
+  { code: 'en', name: 'English', flag: { src: 'assets/flags/gb.svg', alt: 'Union Jack' } },
+  { code: 'es', name: 'Español', flag: { src: 'assets/flags/es.svg', alt: 'Bandera de España' } },
+  { code: 'fr', name: 'Français', flag: { src: 'assets/flags/fr.svg', alt: 'Drapeau français' } },
+  { code: 'de', name: 'Deutsch', flag: { src: 'assets/flags/de.svg', alt: 'Flagge Deutschlands' } }
 ];
 
 const PHI_DESCRIPTORS = [
@@ -67,7 +67,7 @@ function quadrantFromVector(x, y, z) {
   };
 }
 
-const QUADRANT_LEGEND = Array.from({ length: 16 }, (_, idx) => {
+const BASE_QUADRANT_LEGEND = Array.from({ length: 16 }, (_, idx) => {
   const phiSector = Math.floor(idx / 4);
   const thetaSector = idx % 4;
   return {
@@ -89,8 +89,97 @@ const state = {
   x: 0, y: 0, z: 0,     // Cartesian scores for economy, rights and establishment fidelity
   questions: [],        // currently loaded questions
   questionsByLang: {},  // cache of loaded questions by language
+  weightTotals: { economia: 0, dirittocivilismo: 0, establishment: 0 },
   answers: []           // user answers
 };
+
+const AXES = ['economia', 'dirittocivilismo', 'establishment'];
+const MAX_RESPONSE_VALUE = 2;
+
+let QUADRANT_DATA = [];
+
+function componentToAxis(component) {
+  if (!component) return null;
+  if (component === 'autoritarismo') return 'dirittocivilismo';
+  return AXES.includes(component) ? component : null;
+}
+
+function normalizeQuestionEntry(question) {
+  const normalizedWeights = { economia: 0, dirittocivilismo: 0, establishment: 0 };
+  if (!question || typeof question !== 'object') {
+    return { title: '', weights: normalizedWeights };
+  }
+  const providedWeights = question.weights && typeof question.weights === 'object' ? question.weights : null;
+  AXES.forEach((axis) => {
+    let value = 0;
+    if (providedWeights && providedWeights[axis] !== undefined) {
+      value = Number(providedWeights[axis]) || 0;
+    } else {
+      const mapped = componentToAxis(question.component);
+      if (mapped === axis) value = 1;
+    }
+    normalizedWeights[axis] = value;
+  });
+  return { ...question, weights: normalizedWeights };
+}
+
+function computeWeightTotals(questions) {
+  return questions.reduce((acc, question) => {
+    AXES.forEach((axis) => {
+      const weight = question.weights && typeof question.weights === 'object' ? Number(question.weights[axis]) || 0 : 0;
+      acc[axis] += weight;
+    });
+    return acc;
+  }, { economia: 0, dirittocivilismo: 0, establishment: 0 });
+}
+
+function getNormalizedScores() {
+  const totals = state.weightTotals || {};
+  const normalize = (score, axis) => {
+    const denom = (Number(totals[axis]) || 0) * MAX_RESPONSE_VALUE;
+    if (!denom) return 0;
+    const value = score / denom;
+    return Math.max(-1, Math.min(1, value));
+  };
+  return {
+    x: normalize(state.x, 'economia'),
+    y: normalize(state.y, 'dirittocivilismo'),
+    z: normalize(state.z, 'establishment')
+  };
+}
+
+function getQuadrantDetails(index) {
+  if (!Array.isArray(QUADRANT_DATA) || !QUADRANT_DATA.length) return null;
+  return QUADRANT_DATA.find((q) => q && Number(q.id) === index + 1) || null;
+}
+
+function getQuadrantLegend() {
+  if (!Array.isArray(QUADRANT_DATA) || QUADRANT_DATA.length !== 16) {
+    return BASE_QUADRANT_LEGEND;
+  }
+  return QUADRANT_DATA.map((entry, idx) => ({
+    number: entry.id,
+    name: entry.name,
+    descriptor: entry.content,
+    bounds: entry.bounds,
+    affiliation: entry.affiliazionepolitica,
+    color: colorFromIndex(idx).css
+  }));
+}
+
+async function loadQuadrants() {
+  try {
+    const res = await fetch('quadrants.json?cb=' + Date.now());
+    if (!res.ok) throw new Error(res.statusText);
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      QUADRANT_DATA = data;
+    }
+  } catch (err) {
+    console.warn('Impossibile caricare i dati dei quadranti', err);
+    QUADRANT_DATA = [];
+  }
+}
 
 /* --------------------------------------------------------------------------
  *  Utility helpers
@@ -128,7 +217,9 @@ function navBar() {
 async function loadQuestions() {
   const lang = state.language || 'it';
   if (state.questionsByLang[lang]) {
-    state.questions = state.questionsByLang[lang];
+    const cached = state.questionsByLang[lang];
+    state.questions = cached.questions;
+    state.weightTotals = { ...cached.totals };
     return;
   }
   let filename;
@@ -140,11 +231,15 @@ async function loadQuestions() {
   try {
     const res = await fetch(filename + `?cb=${Date.now()}`);
     const data = await res.json();
-    state.questionsByLang[lang] = data;
-    state.questions = data;
+    const normalized = Array.isArray(data) ? data.map(normalizeQuestionEntry) : [];
+    const totals = computeWeightTotals(normalized);
+    state.questionsByLang[lang] = { questions: normalized, totals };
+    state.questions = normalized;
+    state.weightTotals = { ...totals };
   } catch (err) {
     console.error('Impossibile caricare le domande', err);
     state.questions = [];
+    state.weightTotals = { economia: 0, dirittocivilismo: 0, establishment: 0 };
   }
 }
 
@@ -215,8 +310,8 @@ function viewLanguage() {
       <label class="text-lg font-semibold text-gray-700 block mb-2" for="language">Choose language</label>
       <div id="language" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
         ${LANGUAGES.map(({ code, name, flag }) => `
-          <button class="lang-btn bg-white border border-indigo-200 hover:border-indigo-400 hover:shadow rounded-lg px-4 py-3 flex items-center justify-center gap-2 text-indigo-700 font-semibold transition" data-lang="${code}">
-            <span class="text-2xl" aria-hidden="true">${flag}</span>
+          <button class="lang-btn bg-white border border-indigo-200 hover:border-indigo-400 hover:shadow rounded-lg px-4 py-3 flex items-center justify-center gap-2 text-indigo-700 font-semibold transition" data-lang="${code}" aria-label="${name}">
+            <img src="${flag.src}" alt="${flag.alt}" class="w-7 h-7 rounded-full shadow-sm" loading="lazy" />
             <span class="text-base">${name}</span>
           </button>
         `).join('')}
@@ -240,6 +335,7 @@ function viewLanguage() {
       state.x = 0;
       state.y = 0;
       state.z = 0;
+      state.weightTotals = { economia: 0, dirittocivilismo: 0, establishment: 0 };
       state.answers = [];
       state.step = 1;
       viewWelcome();
@@ -320,6 +416,7 @@ function viewProfile() {
     state.dob = document.getElementById('dob').value;
     state.idx = 0;
     state.x = 0; state.y = 0; state.z = 0;
+    state.weightTotals = { economia: 0, dirittocivilismo: 0, establishment: 0 };
     state.answers = [];
     loadQuestions().then(() => viewQuiz());
   };
@@ -370,7 +467,7 @@ function viewQuiz() {
   document.querySelectorAll('.ans').forEach((btn) => {
     btn.onclick = () => {
       const score = parseInt(btn.dataset.v, 10);
-      applyScore(q.component, score);
+      applyScore(q, score);
       state.answers[state.idx] = score;
       stepForward();
     };
@@ -391,16 +488,17 @@ function viewQuiz() {
 }
 
 /**
- * Adds a score to the appropriate axis based on the component of the
- * current question.  The axes are mapped as follows:
- * - economia → x (economy)
- * - dirittocivilismo → y (civil rights/authoritarianism)
- * - establishment → z (fidelity to establishment)
+ * Adds a weighted score to the axes based on the provided question
+ * configuration.  Each question carries an explicit weight for all
+ * three components so that future adjustments can rebalance their
+ * influence without touching the code.
  */
-function applyScore(component, v) {
-  if (component === 'economia') state.x += v;
-  else if (component === 'dirittocivilismo') state.y += v;
-  else if (component === 'establishment') state.z += v;
+function applyScore(question, value) {
+  if (!question || !question.weights) return;
+  const weights = question.weights;
+  state.x += (Number(weights.economia) || 0) * value;
+  state.y += (Number(weights.dirittocivilismo) || 0) * value;
+  state.z += (Number(weights.establishment) || 0) * value;
 }
 
 /** Advances to the next question or finishes if at the end */
@@ -424,7 +522,7 @@ function stepBack() {
   const prevQ = state.questions[state.idx];
   const prevScore = state.answers[state.idx];
   if (prevScore !== undefined) {
-    applyScore(prevQ.component, -prevScore);
+    applyScore(prevQ, -prevScore);
     state.answers[state.idx] = undefined;
   }
   state.idx--;
@@ -442,9 +540,10 @@ function finish() {
  *  sectors for the polar angle (theta), yielding 16 quadrants.
  */
 function computeResults() {
-  const { x, y, z } = state;
+  const normalized = getNormalizedScores();
+  const { x, y, z } = normalized;
   const r = Math.sqrt(x * x + y * y + z * z) || 0;
-  const theta = r ? Math.acos(z / r) : 0; // 0..π
+  const theta = r ? Math.acos(z / (r || 1)) : 0; // 0..π
   let phi = Math.atan2(y, x);             // -π..π
   // Normalize phi to 0..2π
   if (phi < 0) phi += 2 * Math.PI;
@@ -453,6 +552,7 @@ function computeResults() {
   const thetaSector = Math.floor((theta / Math.PI) * 4);      // 0..3
   const quadrant16 = Math.min(phiSector * 4 + thetaSector + 1, 16);         // 1..16
   const quadrantMeta = quadrantFromVector(x, y, z);
+  const extra = getQuadrantDetails(quadrantMeta.index);
   return {
     r,
     theta,
@@ -460,11 +560,16 @@ function computeResults() {
     thetaDeg: rad2deg(theta),
     phiDeg: rad2deg(phi),
     quadrant16,
-    descriptor: quadrantMeta.descriptor,
+    descriptor: extra?.content || quadrantMeta.descriptor,
     color: quadrantMeta.color,
     phiSector: quadrantMeta.phiSector,
     thetaSector: quadrantMeta.thetaSector,
-    x, y, z
+    x,
+    y,
+    z,
+    normalized,
+    raw: { x: state.x, y: state.y, z: state.z },
+    quadrantInfo: extra
   };
 }
 
@@ -475,10 +580,11 @@ function computeResults() {
 function viewResult() {
   state.step = 4;
   // Calcola il quadrante e prepara la descrizione
-  const { quadrant16, descriptor, color } = computeResults();
+  const result = computeResults();
+  const { quadrant16, descriptor, color, normalized } = result;
   const description = descriptor || `Quadrante ${quadrant16}`;
   // Mostra anche i punteggi cartesiani nella pagina di riepilogo
-  const { x, y, z } = state;
+  const { x, y, z } = normalized;
   app.innerHTML = navBar() + `
     <div class="card p-8 mx-auto max-w-3xl">
       <h3 class="text-2xl font-bold mb-4">Il tuo risultato</h3>
@@ -490,9 +596,10 @@ function viewResult() {
         </div>
       </div>
       <div class="mt-4 space-y-1 text-gray-800 text-sm">
-        <div><span class="font-semibold">x (economia):</span> ${x}</div>
-        <div><span class="font-semibold">y (dirittocivilismo):</span> ${y}</div>
-        <div><span class="font-semibold">z (fedeltà all'establishment):</span> ${z}</div>
+        <div><span class="font-semibold">x (economia normalizzata):</span> ${round(x)}</div>
+        <div><span class="font-semibold">y (dirittocivilismo normalizzato):</span> ${round(y)}</div>
+        <div><span class="font-semibold">z (fedeltà all'establishment normalizzata):</span> ${round(z)}</div>
+        <p class="text-xs text-gray-500">Valori normalizzati in base al peso complessivo delle domande (range [-1, 1]).</p>
       </div>
       <div class="mt-6 flex gap-3">
         <button id="showInsights" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg px-4 py-3">Visualizza insights</button>
@@ -523,6 +630,7 @@ function viewResult() {
     state.dob = '';
     state.idx = 0;
     state.x = 0; state.y = 0; state.z = 0;
+    state.weightTotals = { economia: 0, dirittocivilismo: 0, establishment: 0 };
     state.answers = [];
     viewLanguage();
   };
@@ -540,9 +648,22 @@ function viewResult() {
 function viewInsights() {
   state.step = 5;
   const res = computeResults();
-  const { r, phiDeg, thetaDeg, quadrant16, x, y, z, descriptor, color } = res;
-  const denom = r || 1;
-  const norm = { x: x / denom, y: y / denom, z: z / denom };
+  const { r, phiDeg, thetaDeg, quadrant16, descriptor, color, normalized, raw, quadrantInfo } = res;
+  const totals = state.weightTotals || { economia: 0, dirittocivilismo: 0, establishment: 0 };
+  const legend = getQuadrantLegend();
+  const stats = [
+    { key: 'economia', label: 'Economia', value: normalized.x, raw: raw.x, total: totals.economia },
+    { key: 'dirittocivilismo', label: 'Diritti civili', value: normalized.y, raw: raw.y, total: totals.dirittocivilismo },
+    { key: 'establishment', label: 'Establishment', value: normalized.z, raw: raw.z, total: totals.establishment }
+  ];
+  const formatBounds = (bounds) => {
+    if (!bounds) return '';
+    const phi = Array.isArray(bounds.phi) ? `φ ${round(bounds.phi[0])}° – ${round(bounds.phi[1])}°` : '';
+    const theta = Array.isArray(bounds.theta) ? `θ ${round(bounds.theta[0])}° – ${round(bounds.theta[1])}°` : '';
+    return [phi, theta].filter(Boolean).join(' · ');
+  };
+  const affiliations = quadrantInfo?.affiliazionepolitica;
+  const affiliationList = Array.isArray(affiliations) ? affiliations : (affiliations ? [affiliations] : []);
   app.innerHTML = navBar() + `
     <div class="card p-8 mx-auto max-w-5xl">
       <h3 class="text-2xl font-bold mb-4">Dettaglio del risultato</h3>
@@ -550,15 +671,26 @@ function viewInsights() {
         <span class="inline-flex items-center justify-center w-12 h-12 rounded-full border border-gray-200" style="background:${color.css};"></span>
         <div>
           <p class="text-lg font-semibold text-indigo-700">Quadrante ${quadrant16}</p>
-          <p class="text-gray-700 text-sm sm:text-base">${descriptor}</p>
+          <p class="text-gray-700 text-sm sm:text-base">${escapeHtml(descriptor)}</p>
+          ${quadrantInfo && quadrantInfo.name ? `<p class="text-xs text-gray-500 mt-1">${escapeHtml(quadrantInfo.name)} · ${escapeHtml(formatBounds(quadrantInfo.bounds))}</p>` : ''}
+          ${affiliationList.length ? `<p class="text-xs text-gray-500 mt-1">Esempi: ${affiliationList.map(escapeHtml).join(', ')}</p>` : ''}
         </div>
       </div>
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="space-y-2 text-sm sm:text-base text-gray-800">
+        <div class="space-y-3 text-sm sm:text-base text-gray-800">
           <div><span class="font-semibold">r:</span> ${round(r)}</div>
           <div><span class="font-semibold">φ:</span> ${round(phiDeg)}°</div>
           <div><span class="font-semibold">θ:</span> ${round(thetaDeg)}°</div>
-          <div><span class="font-semibold">Coordinate normalizzate:</span> (${round(norm.x)}, ${round(norm.y)}, ${round(norm.z)})</div>
+          <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4 text-indigo-900 text-sm space-y-2">
+            ${stats.map((stat) => `
+              <div>
+                <p class="font-semibold">${stat.label}</p>
+                <p>Valore normalizzato: ${round(stat.value)}</p>
+                <p class="text-xs">Valore grezzo: ${round(stat.raw)} · Peso totale: ${round(stat.total)}</p>
+              </div>
+            `).join('')}
+            <p class="text-xs text-indigo-700">Le coordinate sono normalizzate in base al peso complessivo delle domande per ciascun asse (range [-1, 1]).</p>
+          </div>
         </div>
         <div>
           <div class="border-b border-gray-200 flex items-center gap-2">
@@ -570,11 +702,9 @@ function viewInsights() {
             <p class="text-xs text-gray-500 mt-2">Ruota la sfera per esplorare i quadranti politici colorati.</p>
           </div>
           <div id="tabCartesian" class="pt-4 hidden">
-            <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4 text-sm text-indigo-900 space-y-2">
-              <p><span class="font-semibold">x (economia):</span> ${x}</p>
-              <p><span class="font-semibold">y (diritti civili):</span> ${y}</p>
-              <p><span class="font-semibold">z (establishment):</span> ${z}</p>
-              <p class="text-xs text-indigo-700">Valori positivi indicano apertura verso il concetto indicato, valori negativi indicano un orientamento opposto.</p>
+            <div id="cartesianMount" class="w-full h-64 rounded-lg border border-indigo-100 bg-white"></div>
+            <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4 text-sm text-indigo-900 space-y-1 mt-4">
+              <p class="text-xs text-indigo-700">Grafico cartesiano 3D con assi normalizzati (range [-1, 1]).</p>
             </div>
           </div>
         </div>
@@ -582,13 +712,15 @@ function viewInsights() {
       <div class="mt-6">
         <h4 class="text-base font-semibold text-gray-700 mb-3">Legenda dei quadranti</h4>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs text-gray-600">
-          ${QUADRANT_LEGEND.map(({ number, descriptor, color }) => `
-            <div class="flex items-start gap-2 bg-gray-50 rounded-md p-3 border border-gray-100">
-              <span class="mt-0.5 inline-flex w-3 h-3 rounded-full" style="background:${color};"></span>
-              <div>
-                <p class="font-semibold text-gray-800">Quadrante ${number}</p>
-                <p>${descriptor}</p>
+          ${legend.map(({ number, name, descriptor: desc, bounds, affiliation, color }) => `
+            <div class="flex flex-col gap-2 bg-gray-50 rounded-md p-3 border border-gray-100">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex w-3 h-3 rounded-full" style="background:${color};"></span>
+                <p class="font-semibold text-gray-800">Quadrante ${number}${name ? ` · ${escapeHtml(name)}` : ''}</p>
               </div>
+              <p>${escapeHtml(desc)}</p>
+              ${bounds ? `<p class="text-[10px] uppercase tracking-wide text-gray-400">${escapeHtml(formatBounds(bounds))}</p>` : ''}
+              ${affiliation ? `<p class="text-[11px] text-gray-500">Esempi: ${Array.isArray(affiliation) ? affiliation.map(escapeHtml).join(', ') : escapeHtml(affiliation)}</p>` : ''}
             </div>
           `).join('')}
         </div>
@@ -615,15 +747,31 @@ function viewInsights() {
     state.dob = '';
     state.idx = 0;
     state.x = 0; state.y = 0; state.z = 0;
+    state.weightTotals = { economia: 0, dirittocivilismo: 0, establishment: 0 };
     state.answers = [];
     viewLanguage();
   };
-  // Initialize the sphere visualization
-  initSphere(document.getElementById('sphereMount'), norm, { color: color.css });
-
+  const sphereMount = document.getElementById('sphereMount');
+  const cartesianMount = document.getElementById('cartesianMount');
   const tabButtons = document.querySelectorAll('.tab-btn');
   const sphereTab = document.getElementById('tabSphere');
   const cartesianTab = document.getElementById('tabCartesian');
+  let sphereInitialized = false;
+  let cartesianInitialized = false;
+
+  function ensureSphere() {
+    if (!sphereInitialized && sphereMount) {
+      initSphere(sphereMount, normalized, { color: color.css });
+      sphereInitialized = true;
+    }
+  }
+
+  function ensureCartesian() {
+    if (!cartesianInitialized && cartesianMount) {
+      initCartesianPlot(cartesianMount, normalized, { color: color.css });
+      cartesianInitialized = true;
+    }
+  }
 
   function activateTab(name) {
     tabButtons.forEach((btn) => {
@@ -640,6 +788,11 @@ function viewInsights() {
     });
     sphereTab.classList.toggle('hidden', name !== 'sphere');
     cartesianTab.classList.toggle('hidden', name !== 'cartesian');
+    if (name === 'sphere') {
+      ensureSphere();
+    } else if (name === 'cartesian') {
+      ensureCartesian();
+    }
   }
 
   tabButtons.forEach((btn) => {
@@ -802,7 +955,79 @@ function initSphere(mount, point, options = {}) {
   animate();
 }
 
+function initCartesianPlot(mount, point, options = {}) {
+  if (!THREE || !OrbitControls) {
+    mount.innerHTML = '<div class="p-4 text-sm text-red-600">Impossibile caricare Three.js.</div>';
+    return;
+  }
+  const highlight = new THREE.Color(options.color || '#ff2d2d');
+  const scene = new THREE.Scene();
+  scene.background = null;
+  const camera = new THREE.PerspectiveCamera(45, mount.clientWidth / mount.clientHeight, 0.1, 100);
+  camera.position.set(1.6, 1.6, 1.6);
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(mount.clientWidth, mount.clientHeight);
+  renderer.setPixelRatio(window.devicePixelRatio || 1);
+  mount.innerHTML = '';
+  mount.appendChild(renderer.domElement);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  const directional = new THREE.DirectionalLight(0xffffff, 0.5);
+  directional.position.set(3, 4, 5);
+  scene.add(directional);
+
+  const grid = new THREE.GridHelper(2, 8, 0xdbeafe, 0xe0f2fe);
+  grid.position.y = 0;
+  scene.add(grid);
+
+  const axisLength = 1.2;
+  const axes = [
+    { dir: new THREE.Vector3(1, 0, 0), color: 0xf97316 },
+    { dir: new THREE.Vector3(0, 1, 0), color: 0x22c55e },
+    { dir: new THREE.Vector3(0, 0, 1), color: 0x3b82f6 }
+  ];
+  axes.forEach(({ dir, color }) => {
+    const arrow = new THREE.ArrowHelper(dir.clone().normalize(), new THREE.Vector3(0, 0, 0), axisLength, color, 0.08, 0.04);
+    scene.add(arrow);
+    const negative = new THREE.ArrowHelper(dir.clone().normalize().multiplyScalar(-1), new THREE.Vector3(0, 0, 0), axisLength, color, 0.08, 0.04);
+    scene.add(negative);
+  });
+
+  const clamp = (n) => Math.max(-1, Math.min(1, Number.isFinite(n) ? n : 0));
+  const sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(0.06, 32, 32),
+    new THREE.MeshStandardMaterial({ color: highlight })
+  );
+  sphere.position.set(clamp(point.x), clamp(point.y), clamp(point.z));
+  scene.add(sphere);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.target.set(0, 0, 0);
+  controls.update();
+
+  function onResize() {
+    const { clientWidth, clientHeight } = mount;
+    if (!clientWidth || !clientHeight) return;
+    camera.aspect = clientWidth / clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(clientWidth, clientHeight);
+  }
+
+  window.addEventListener('resize', onResize);
+
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  }
+
+  animate();
+}
+
 // Initialize the application when the DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+  loadQuadrants();
   viewLanguage();
 });

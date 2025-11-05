@@ -1,42 +1,322 @@
 [
-  { "title": "Ceci est la question générique numéro 1.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 2.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 3.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 4.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 5.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 6.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 7.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 8.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 9.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 10.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 11.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 12.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 13.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 14.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 15.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 16.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 17.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 18.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 19.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 20.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 21.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 22.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 23.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 24.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 25.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 26.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 27.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 28.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 29.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 30.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 31.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 32.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 33.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 34.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 35.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 36.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 37.", "component": "economia" },
-  { "title": "Ceci est la question générique numéro 38.", "component": "dirittocivilismo" },
-  { "title": "Ceci est la question générique numéro 39.", "component": "establishment" },
-  { "title": "Ceci est la question générique numéro 40.", "component": "economia" }
+  {
+    "title": "Ceci est la question générique numéro 1.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 2.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 3.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 4.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 5.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 6.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 7.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 8.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 9.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 10.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 11.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 12.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 13.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 14.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 15.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 16.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 17.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 18.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 19.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 20.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 21.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 22.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 23.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 24.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 25.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 26.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 27.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 28.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 29.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 30.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 31.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 32.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 33.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 34.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 35.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 36.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 37.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 38.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 39.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Ceci est la question générique numéro 40.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  }
 ]

@@ -1,42 +1,322 @@
 [
-  { "title": "Dies ist die generische Frage Nummer 1.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 2.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 3.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 4.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 5.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 6.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 7.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 8.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 9.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 10.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 11.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 12.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 13.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 14.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 15.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 16.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 17.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 18.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 19.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 20.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 21.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 22.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 23.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 24.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 25.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 26.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 27.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 28.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 29.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 30.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 31.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 32.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 33.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 34.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 35.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 36.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 37.", "component": "economia" },
-  { "title": "Dies ist die generische Frage Nummer 38.", "component": "dirittocivilismo" },
-  { "title": "Dies ist die generische Frage Nummer 39.", "component": "establishment" },
-  { "title": "Dies ist die generische Frage Nummer 40.", "component": "economia" }
+  {
+    "title": "Dies ist die generische Frage Nummer 1.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 2.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 3.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 4.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 5.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 6.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 7.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 8.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 9.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 10.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 11.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 12.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 13.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 14.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 15.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 16.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 17.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 18.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 19.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 20.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 21.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 22.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 23.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 24.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 25.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 26.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 27.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 28.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 29.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 30.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 31.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 32.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 33.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 34.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 35.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 36.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 37.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 38.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 39.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0,
+      "establishment": 1
+    }
+  },
+  {
+    "title": "Dies ist die generische Frage Nummer 40.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  }
 ]
