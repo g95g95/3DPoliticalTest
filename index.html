@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+
+    <!-- Dì al browser che "three" sta nel file locale -->
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "./lib/three.module.js"
+          }
+        }
+    </script>
+
+
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Politico 3D</title>
+
+    <!-- Font moderno -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind minimale via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji';
+            background: #f3f5f8;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        /* Contenitore della sfera: avrà altezza flessibile */
+        #sphereMount {
+            width: 100%;
+            min-height: 360px; /* garantisce spazio visibile */
+            height: 420px; /* può essere adattato */
+            border-radius: 12px;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, #e8eef9 0%, #e3e7ee 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div id="app" class="max-w-4xl mx-auto py-12 px-4"></div>
+
+
+    <!-- App -->
+    <script src="script.js" type="module"></script>
+</body>
+</html>
