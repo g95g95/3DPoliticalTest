@@ -1,6 +1,110 @@
 [
   {
-    "title": "Questa è la domanda generica numero 1.",
+    "title": "Gheddafi è stato il miglior governatore possibile della Libia",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -0.5,
+      "establishment": 0.5
+    }
+  },
+  {
+    "title": "La responsabilità delle scelte in matiera economica dovrebbe ricadere organi politici nazionali, non su enti internazionali come il FMI",
+    "weights": {
+      "economia": 0.5,
+      "dirittocivilismo": 0,
+      "establishment": 0.5
+    }
+  },
+  {
+    "title": "La lettura e l'arte sono aspetti strategici di una società",
+    "weights": {
+      "economia": 0.3,
+      "dirittocivilismo": 0.4,
+      "establishment": -0.3
+    }
+  },
+  {
+    "title": "Il femminismo nell'Occidente del XXI secolo non ha più motivo di esistere in quanto tale",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0.5,
+      "establishment": 0.5
+    }
+  },
+  {
+    "title": "J.K. Rowling è una vergogna per tutte le donne per via delle sue affermazioni transfobiche",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -0.5,
+      "establishment": -0.5
+    }
+  },
+  {
+    "title": "Per sperare di arginare il cambiamento climatico è necessario modificare drasticamente le nostre abitudini di consumo",
+    "weights": {
+      "economia": -0.5,
+      "dirittocivilismo": 0,
+      "establishment": -0.5
+    }
+  },
+  {
+    "title": "I cambiamenti climatici sono causa diretta dell'azione umana",
+    "weights": {
+      "economia": -0.5,
+      "dirittocivilismo": 0,
+      "establishment": -0.5
+    }
+  },
+  {
+    "title": "Nuovi lavori richiedono nuovi diritti sociali",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Pattugliare i confini nell'epoca della globalizzazione non ha più senso",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -0.5,
+      "establishment": -0.5
+    }
+  },
+  {
+    "title": "La carbonara fa parte della  cultura  italiana, quindi va fatta con guanciale e pecorino come impone la tradizione",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -0.2,
+      "establishment": -0.8
+    }
+  },
+  {
+    "title": "Il green pass è stato uno strumento necessario per arginare la pandemia",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -0.2,
+      "establishment": -0.8
+    }
+  },
+  {
+    "title": "Il vaccino COVID è sicuro in quanto testato dagli scienziati di tutto il mondo",
+    "weights": {
+      "economia": -0.5,
+      "dirittocivilismo": 0,
+      "establishment": -0.5
+    }
+  },
+  {
+    "title": "La tassazione dovrebbe essere progressiva, in quanto i ricchi devono contribuire in misura maggiore al gettito fiscale",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Il settore pubblico va potenziato con assunzioni di massa",
     "weights": {
       "economia": 1,
       "dirittocivilismo": 0,
@@ -8,315 +112,283 @@
     }
   },
   {
-    "title": "Questa è la domanda generica numero 2.",
+    "title": "Non è necessario aumentare lo stipendio degli insegnanti considerando che hanno tre mesi di ferie",
     "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
+      "economia": 0.7,
+      "dirittocivilismo": 0,
+      "establishment": 0.3
+    }
+  },
+  {
+    "title": "Il reddito universale sarà, quando implementato, l'unico valido strumento di sostegno alla povertà",
+    "weights": {
+      "economia": -0.5,
+      "dirittocivilismo": 0,
+      "establishment": -0.5
+    }
+  },
+  {
+    "title": "Una società giusta per essere tale deve tassare adeguatamente le grandi multinazionali",
+    "weights": {
+      "economia": -0.8,
+      "dirittocivilismo": 0,
+      "establishment": 0.2
+    }
+  },
+  {
+    "title": "La beneficienza dei grandi miliardari è sicuramente migliore di qualunque stato sociale",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
       "establishment": 0
     }
   },
   {
-    "title": "Questa è la domanda generica numero 3.",
+    "title": "La sanità deve essere pubblica e universale",
+    "weights": {
+      "economia": -1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "La scuola deve essere pubblica",
+    "weights": {
+      "economia": -0.7,
+      "dirittocivilismo": 1,
+      "establishment": -0.3
+    }
+  },
+  {
+    "title": "La Russia è pienamente giustificata nell'invasione dell'Ucraina in quanto vittima da anni di provocazioni NATO",
     "weights": {
       "economia": 0,
+      "dirittocivilismo": 0.2,
+      "establishment": 0.8
+    }
+  },
+  {
+    "title": "La NATO è un'organizzazione offensiva, braccio armato della talassocrazia statunitense",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0.2,
+      "establishment": 0.8
+    }
+  },
+  {
+    "title": "Ridurre l'orario di lavoro a parità di salario dovrebbe essere la la priorità di questa decade",
+    "weights": {
+      "economia": -0.8,
       "dirittocivilismo": 0,
+      "establishment": -0.2
+    }
+  },
+  {
+    "title": "Introdurre un salario minimo impoverirebbe gli imprenditori costrigendoli a licenziare personale",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Sono favorevole alla maternità surrogata",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -0.8,
+      "establishment": -0.3
+    }
+  },
+  {
+    "title": "I membri della comunità LGBTQIA+ dovrebbero avere la possibilità di sposarsi",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -0.5,
+      "establishment": -0.5
+    }
+  },
+  {
+    "title": "I membri della comunità LGBTQIA+ dovrebbero avere la possibilità di adottare bambini",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -0.5,
+      "establishment": -0.5
+    }
+  },
+  {
+    "title": "Fascismo e comunismo sono la stessa cosa.",
+    "weights": {
+      "economia": 0.3,
+      "dirittocivilismo": -0.4,
+      "establishment": -0.3
+    }
+  },
+  {
+    "title": "L'aumento degli stipendi dovrebbe essere vincolato alla produttività dei dipendenti.",
+    "weights": {
+      "economia": 0.8,
+      "dirittocivilismo": 0,
+      "establishment": -0.2
+    }
+  },
+  {
+    "title": "Tagliare le tasse a chi produce più ricchezza è ingiusto e pericoloso.",
+    "weights": {
+      "economia": 1,
+      "dirittocivilismo": 0,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Chiara Ferragni deve essere considerata un esempio per tutti i giovani.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -0.2,
+      "establishment": -0.8
+    }
+  },
+  {
+    "title": "Non è possibile avere una morale indipendente dai principi religiosi.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0.5,
+      "establishment": 0.5
+    }
+  },
+  {
+    "title": "Il papà deve essere una figura guida per la società.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0.2,
+      "establishment": 0.8
+    }
+  },
+  {
+    "title": "Una tassa sulle grandi transazioni finanziarie è necessaria per liberare risorse per lo stato sociale.",
+    "weights": {
+      "economia": -0.5,
+      "dirittocivilismo": 0,
+      "establishment": 0.5
+    }
+  },
+  {
+    "title": "Quando una banca fallisce, va nazionalizzata.",
+    "weights": {
+      "economia": -0.5,
+      "dirittocivilismo": 0,
+      "establishment": 0.5
+    }
+  },
+  {
+    "title": "Il partito democratico è un partito di sinistra.",
+    "weights": {
+      "economia": 0.5,
+      "dirittocivilismo": 0,
+      "establishment": -0.5
+    }
+  },
+  {
+    "title": "Sono favorevole all'eutanasia.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -1,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Sono contrario alla legalizzazione delle droghe leggere.",
+    "weights": {
+      "economia": 0.5,
+      "dirittocivilismo": 0.5,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Sono contrario alla legalizzazione delle droghe pesanti.",
+    "weights": {
+      "economia": 0.2,
+      "dirittocivilismo": 0.8,
+      "establishment": 0
+    }
+  },
+  {
+    "title": "Sono favorevole alla legalizzazione delle armi.",
+    "weights": {
+      "economia": 0.3,
+      "dirittocivilismo": -0.3,
+      "establishment": 0.4
+    }
+  },
+  {
+    "title": "Le politiche protezioniste di Trump, con dazi e tasse sui prodotti di importazioni sono state un'ottima mossa per l'economia mondiale.",
+    "weights": {
+      "economia": -0.2,
+      "dirittocivilismo": 0,
+      "establishment": 0.8
+    }
+  },
+  {
+    "title": "Nel 2024 non ha più senso di parlare di lotta di classe.",
+    "weights": {
+      "economia": 0.5,
+      "dirittocivilismo": 0,
+      "establishment": -0.5
+    }
+  },
+  {
+    "title": "La nazionalità è più importante della classe sociale di appartenenza.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": 0.5,
+      "establishment": 0.5
+    }
+  },
+  {
+    "title": "Odio il mondo digitale e tecnologico.",
+    "weights": {
+      "economia": 0,
+      "dirittocivilismo": -0,
       "establishment": 1
     }
   },
   {
-    "title": "Questa è la domanda generica numero 4.",
+    "title": "Ridurre le disuguaglianze è l'unico modo per impedire crisi di sovrapproduzione.",
     "weights": {
-      "economia": 1,
+      "economia": -0.5,
       "dirittocivilismo": 0,
-      "establishment": 0
+      "establishment": -0.5
     }
   },
   {
-    "title": "Questa è la domanda generica numero 5.",
+    "title": "Non esistono razze inferiori.",
     "weights": {
       "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
+      "dirittocivilismo": -0.8,
+      "establishment": -0.2
     }
   },
   {
-    "title": "Questa è la domanda generica numero 6.",
+    "title": "Non esistono culture inferiori.",
     "weights": {
       "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
+      "dirittocivilismo": -0.8,
+      "establishment": -0.2
     }
   },
   {
-    "title": "Questa è la domanda generica numero 7.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 8.",
+    "title": "Un bambino di 7 anni può intraprendere di sua spontanea volontà un percorso di cambiamento di genere.",
     "weights": {
       "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
+      "dirittocivilismo": -0.5,
+      "establishment": -0.5
     }
   },
   {
-    "title": "Questa è la domanda generica numero 9.",
+    "title": "Il piccolo lavoratore autonomo dovrebbe avere un regime fiscale agevolato.",
     "weights": {
-      "economia": 0,
+      "economia": 0.4,
       "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 10.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 11.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 12.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 13.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 14.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 15.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 16.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 17.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 18.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 19.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 20.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 21.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 22.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 23.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 24.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 25.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 26.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 27.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 28.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 29.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 30.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 31.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 32.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 33.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 34.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 35.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 36.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 37.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 38.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 1,
-      "establishment": 0
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 39.",
-    "weights": {
-      "economia": 0,
-      "dirittocivilismo": 0,
-      "establishment": 1
-    }
-  },
-  {
-    "title": "Questa è la domanda generica numero 40.",
-    "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
+      "establishment": 0.6
     }
   }
 ]
