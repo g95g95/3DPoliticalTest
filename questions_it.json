@@ -186,9 +186,9 @@
   {
     "title": "Introdurre un salario minimo impoverirebbe gli imprenditori costrigendoli a licenziare personale",
     "weights": {
-      "economia": 1,
+      "economia": 0.9,
       "dirittocivilismo": 0,
-      "establishment": 0
+      "establishment": 0.1
     }
   },
   {
@@ -234,9 +234,9 @@
   {
     "title": "Tagliare le tasse a chi produce più ricchezza è ingiusto e pericoloso.",
     "weights": {
-      "economia": 1,
-      "dirittocivilismo": 0,
-      "establishment": 0
+      "economia": -0.3,
+      "dirittocivilismo": -0.1,
+      "establishment": 0.6
     }
   },
   {

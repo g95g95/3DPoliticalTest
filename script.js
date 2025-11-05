@@ -366,7 +366,8 @@ const state = {
 };
 
 const AXES = ['economia', 'dirittocivilismo', 'establishment'];
-const MAX_RESPONSE_VALUE = 2;
+const ANSWER_LABELS = ['Sì molto', 'Sì', 'Non so', 'No', 'No molto'];
+const ANSWER_VALUES = [1, 0.5, 0, -0.5, -1];
 
 let QUADRANT_DATA = [];
 
@@ -392,6 +393,12 @@ function normalizeQuestionEntry(question) {
     }
     normalizedWeights[axis] = value;
   });
+  const weightSum = AXES.reduce((acc, axis) => acc + Math.abs(normalizedWeights[axis]), 0);
+  if (weightSum > 0) {
+    AXES.forEach((axis) => {
+      normalizedWeights[axis] = normalizedWeights[axis] / weightSum;
+    });
+  }
   return { ...question, weights: normalizedWeights };
 }
 
@@ -399,7 +406,7 @@ function computeWeightTotals(questions) {
   return questions.reduce((acc, question) => {
     AXES.forEach((axis) => {
       const weight = question.weights && typeof question.weights === 'object' ? Number(question.weights[axis]) || 0 : 0;
-      acc[axis] += weight;
+      acc[axis] += Math.abs(weight);
     });
     return acc;
   }, { economia: 0, dirittocivilismo: 0, establishment: 0 });
@@ -408,7 +415,7 @@ function computeWeightTotals(questions) {
 function getNormalizedScores() {
   const totals = state.weightTotals || {};
   const normalize = (score, axis) => {
-    const denom = (Number(totals[axis]) || 0) * MAX_RESPONSE_VALUE;
+    const denom = Number(totals[axis]) || 0;
     if (!denom) return 0;
     const value = score / denom;
     return Math.max(-1, Math.min(1, value));
@@ -417,6 +424,26 @@ function getNormalizedScores() {
     x: normalize(state.x, 'economia'),
     y: normalize(state.y, 'dirittocivilismo'),
     z: normalize(state.z, 'establishment')
+  };
+}
+
+function clampUnit(value) {
+  if (!Number.isFinite(value)) return 0;
+  if (value > 1) return 1;
+  if (value < -1) return -1;
+  return value;
+}
+
+function sanitizeHistoryEntry(entry) {
+  if (!entry || typeof entry !== 'object') return null;
+  const normalized = entry.normalized || {};
+  return {
+    ...entry,
+    normalized: {
+      x: clampUnit(normalized.x),
+      y: clampUnit(normalized.y),
+      z: clampUnit(normalized.z)
+    }
   };
 }
 
@@ -983,8 +1010,8 @@ function viewQuiz() {
       </div>
       <h3 class="text-xl font-semibold text-gray-900 mb-6">${escapeHtml(q.title)}</h3>
       <div class="grid md:grid-cols-5 gap-3">
-        ${['Sì molto','Sì','Non so','No','Molto no'].map((lbl, i) => {
-          const value = [2, 1, 0, -1, -2][i];
+        ${ANSWER_LABELS.map((lbl, i) => {
+          const value = ANSWER_VALUES[i];
           return `<button data-v="${value}" class="ans bg-white border border-gray-300 hover:border-indigo-500 hover:shadow-sm rounded-lg px-3 py-3 text-sm font-medium">${lbl}</button>`;
         }).join('')}
       </div>
@@ -1001,7 +1028,7 @@ function viewQuiz() {
   // Handle answer selection
   document.querySelectorAll('.ans').forEach((btn) => {
     btn.onclick = () => {
-      const score = parseInt(btn.dataset.v, 10);
+      const score = Number(btn.dataset.v);
       applyScore(q, score);
       state.answers[state.idx] = score;
       stepForward();
@@ -1077,8 +1104,9 @@ function finish() {
 function computeResults() {
   const normalized = getNormalizedScores();
   const { x, y, z } = normalized;
-  const r = Math.sqrt(x * x + y * y + z * z) || 0;
-  const theta = r ? Math.acos(z / (r || 1)) : 0; // 0..π
+  const magnitude = Math.sqrt(x * x + y * y + z * z) || 0;
+  const r = Math.min(1, magnitude / Math.sqrt(3));
+  const theta = magnitude ? Math.acos(z / (magnitude || 1)) : 0; // 0..π
   let phi = Math.atan2(y, x);             // -π..π
   // Normalize phi to 0..2π
   if (phi < 0) phi += 2 * Math.PI;
@@ -1103,6 +1131,7 @@ function computeResults() {
     y,
     z,
     normalized,
+    rawRadius: magnitude,
     raw: { x: state.x, y: state.y, z: state.z },
     quadrantInfo: extra
   };
@@ -1193,7 +1222,7 @@ function viewInsights() {
   state.step = 5;
   persistCurrentResult();
   const res = computeResults();
-  const { r, phiDeg, thetaDeg, quadrant16, descriptor, color, normalized, raw, quadrantInfo } = res;
+  const { r, phiDeg, thetaDeg, quadrant16, descriptor, color, normalized, raw, quadrantInfo, rawRadius } = res;
   const totals = state.weightTotals || { economia: 0, dirittocivilismo: 0, establishment: 0 };
   const legend = getQuadrantLegend();
   const stats = [
@@ -1333,7 +1362,7 @@ function viewInsights() {
       </div>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="space-y-3 text-sm sm:text-base text-gray-800">
-          <div><span class="font-semibold">r:</span> ${round(r)}</div>
+          <div><span class="font-semibold">r (normalizzato 0-1):</span> ${round(r)}${rawRadius ? ` · <span class="text-xs text-gray-500">|v| = ${round(rawRadius)}</span>` : ''}</div>
           <div><span class="font-semibold">φ:</span> ${round(phiDeg)}°</div>
           <div><span class="font-semibold">θ:</span> ${round(thetaDeg)}°</div>
           <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4 text-indigo-900 text-sm space-y-2">
