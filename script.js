@@ -4,6 +4,79 @@ import { OrbitControls } from './lib/OrbitControls.js';
 // Reference to the root app container
 const app = document.getElementById('app');
 
+// Supported languages and metadata used in the language selector
+const LANGUAGES = [
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
+];
+
+const PHI_DESCRIPTORS = [
+  'Mercato aperto · Diritti civili',
+  'Mercato aperto · Ordine sociale',
+  'Intervento statale · Ordine sociale',
+  'Intervento statale · Diritti civili'
+];
+
+const THETA_DESCRIPTORS = [
+  'Allineamento forte con l\'establishment',
+  'Moderatamente filo-establishment',
+  'Equilibrato ma critico',
+  'Marcatamente anti-establishment'
+];
+
+const QUADRANT_COLORS = [
+  0x174076, 0x1f5ea8, 0x2789c5, 0x2fb8d3,
+  0x315a8c, 0x3f74b0, 0x5199c9, 0x63c2d8,
+  0x4a4a82, 0x5d60a6, 0x767ec2, 0x8ea5d3,
+  0x5f3b7b, 0x7a4ea2, 0x9a6fbe, 0xb695d3
+];
+
+function descriptorFromSectors(phiSector, thetaSector) {
+  const phiLabel = PHI_DESCRIPTORS[Math.min(phiSector, PHI_DESCRIPTORS.length - 1)] || '';
+  const thetaLabel = THETA_DESCRIPTORS[Math.min(thetaSector, THETA_DESCRIPTORS.length - 1)] || '';
+  return `${phiLabel} · ${thetaLabel}`;
+}
+
+function colorFromIndex(index) {
+  const hex = QUADRANT_COLORS[Math.min(index, QUADRANT_COLORS.length - 1)] || 0x2d6cdf;
+  return {
+    hex,
+    css: `#${hex.toString(16).padStart(6, '0')}`
+  };
+}
+
+function quadrantFromVector(x, y, z) {
+  const r = Math.sqrt(x * x + y * y + z * z) || 0;
+  const theta = r ? Math.acos(z / r) : 0;
+  let phi = Math.atan2(y, x);
+  if (phi < 0) phi += 2 * Math.PI;
+  let phiSector = Math.floor((phi / (2 * Math.PI)) * 4);
+  let thetaSector = Math.floor((theta / Math.PI) * 4);
+  if (phiSector > 3) phiSector = 3;
+  if (thetaSector > 3) thetaSector = 3;
+  const index = phiSector * 4 + thetaSector;
+  return {
+    index,
+    phiSector,
+    thetaSector,
+    descriptor: descriptorFromSectors(phiSector, thetaSector),
+    color: colorFromIndex(index)
+  };
+}
+
+const QUADRANT_LEGEND = Array.from({ length: 16 }, (_, idx) => {
+  const phiSector = Math.floor(idx / 4);
+  const thetaSector = idx % 4;
+  return {
+    number: idx + 1,
+    descriptor: descriptorFromSectors(phiSector, thetaSector),
+    color: colorFromIndex(idx).css
+  };
+});
+
 // Global state to track current view and user data
 const state = {
   step: 0,               // 0: language, 1: name, 2: profile, 3: quiz, 4: result, 5: insights, 6: reviews
@@ -139,13 +212,14 @@ function viewLanguage() {
   state.step = 0;
   app.innerHTML = navBar() + `
     <div class="card p-8 mx-auto max-w-xl">
-      <h2 class="text-2xl font-bold mb-6">Seleziona la lingua</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-        <button class="lang-btn bg-indigo-600 text-white rounded-lg px-4 py-3" data-lang="it">Italiano</button>
-        <button class="lang-btn bg-indigo-600 text-white rounded-lg px-4 py-3" data-lang="en">English</button>
-        <button class="lang-btn bg-indigo-600 text-white rounded-lg px-4 py-3" data-lang="es">Español</button>
-        <button class="lang-btn bg-indigo-600 text-white rounded-lg px-4 py-3" data-lang="fr">Français</button>
-        <button class="lang-btn bg-indigo-600 text-white rounded-lg px-4 py-3" data-lang="de">Deutsch</button>
+      <label class="text-lg font-semibold text-gray-700 block mb-2" for="language">Choose language</label>
+      <div id="language" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        ${LANGUAGES.map(({ code, name, flag }) => `
+          <button class="lang-btn bg-white border border-indigo-200 hover:border-indigo-400 hover:shadow rounded-lg px-4 py-3 flex items-center justify-center gap-2 text-indigo-700 font-semibold transition" data-lang="${code}">
+            <span class="text-2xl" aria-hidden="true">${flag}</span>
+            <span class="text-base">${name}</span>
+          </button>
+        `).join('')}
       </div>
     </div>
   `;
@@ -377,7 +451,8 @@ function computeResults() {
   // Determine sectors for phi and theta
   const phiSector = Math.floor((phi / (2 * Math.PI)) * 4);   // 0..3
   const thetaSector = Math.floor((theta / Math.PI) * 4);      // 0..3
-  const quadrant16 = phiSector * 4 + thetaSector + 1;         // 1..16
+  const quadrant16 = Math.min(phiSector * 4 + thetaSector + 1, 16);         // 1..16
+  const quadrantMeta = quadrantFromVector(x, y, z);
   return {
     r,
     theta,
@@ -385,6 +460,10 @@ function computeResults() {
     thetaDeg: rad2deg(theta),
     phiDeg: rad2deg(phi),
     quadrant16,
+    descriptor: quadrantMeta.descriptor,
+    color: quadrantMeta.color,
+    phiSector: quadrantMeta.phiSector,
+    thetaSector: quadrantMeta.thetaSector,
     x, y, z
   };
 }
@@ -396,15 +475,20 @@ function computeResults() {
 function viewResult() {
   state.step = 4;
   // Calcola il quadrante e prepara la descrizione
-  const { quadrant16 } = computeResults();
-  const description = `Quadrante ${quadrant16}: descrizione ${quadrant16}`;
+  const { quadrant16, descriptor, color } = computeResults();
+  const description = descriptor || `Quadrante ${quadrant16}`;
   // Mostra anche i punteggi cartesiani nella pagina di riepilogo
   const { x, y, z } = state;
   app.innerHTML = navBar() + `
     <div class="card p-8 mx-auto max-w-3xl">
       <h3 class="text-2xl font-bold mb-4">Il tuo risultato</h3>
-      <p class="text-xl font-semibold text-indigo-700">Quadrante ${quadrant16}</p>
-      <p class="mt-2 text-gray-700">${description}</p>
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200" style="background:${color.css};"></span>
+        <div>
+          <p class="text-xl font-semibold text-indigo-700">Quadrante ${quadrant16}</p>
+          <p class="mt-1 text-gray-700 text-sm sm:text-base">${description}</p>
+        </div>
+      </div>
       <div class="mt-4 space-y-1 text-gray-800 text-sm">
         <div><span class="font-semibold">x (economia):</span> ${x}</div>
         <div><span class="font-semibold">y (dirittocivilismo):</span> ${y}</div>
@@ -456,22 +540,57 @@ function viewResult() {
 function viewInsights() {
   state.step = 5;
   const res = computeResults();
-  const { r, phiDeg, thetaDeg, quadrant16, x, y, z } = res;
+  const { r, phiDeg, thetaDeg, quadrant16, x, y, z, descriptor, color } = res;
   const denom = r || 1;
   const norm = { x: x / denom, y: y / denom, z: z / denom };
   app.innerHTML = navBar() + `
     <div class="card p-8 mx-auto max-w-5xl">
       <h3 class="text-2xl font-bold mb-4">Dettaglio del risultato</h3>
+      <div class="flex items-start gap-3 mb-6">
+        <span class="inline-flex items-center justify-center w-12 h-12 rounded-full border border-gray-200" style="background:${color.css};"></span>
+        <div>
+          <p class="text-lg font-semibold text-indigo-700">Quadrante ${quadrant16}</p>
+          <p class="text-gray-700 text-sm sm:text-base">${descriptor}</p>
+        </div>
+      </div>
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="space-y-2">
-          <div class="text-gray-800"><span class="font-semibold">r:</span> ${round(r)}</div>
-          <div class="text-gray-800"><span class="font-semibold">φ:</span> ${round(phiDeg)}°</div>
-          <div class="text-gray-800"><span class="font-semibold">θ:</span> ${round(thetaDeg)}°</div>
-          <div class="text-gray-800"><span class="font-semibold">Quadrante:</span> ${quadrant16}</div>
+        <div class="space-y-2 text-sm sm:text-base text-gray-800">
+          <div><span class="font-semibold">r:</span> ${round(r)}</div>
+          <div><span class="font-semibold">φ:</span> ${round(phiDeg)}°</div>
+          <div><span class="font-semibold">θ:</span> ${round(thetaDeg)}°</div>
+          <div><span class="font-semibold">Coordinate normalizzate:</span> (${round(norm.x)}, ${round(norm.y)}, ${round(norm.z)})</div>
         </div>
         <div>
-          <div id="sphereMount" class="w-full"></div>
-          <p class="text-xs text-gray-500 mt-2">Sfera blu (unitaria) con puntino rosso normalizzato.</p>
+          <div class="border-b border-gray-200 flex items-center gap-2">
+            <button class="tab-btn px-4 py-2 text-sm font-semibold text-indigo-700 border-b-2 border-indigo-600" data-tab-target="sphere">Sfera politica</button>
+            <button class="tab-btn px-4 py-2 text-sm font-semibold text-gray-500 hover:text-indigo-600" data-tab-target="cartesian">Coordinate cartesiane</button>
+          </div>
+          <div id="tabSphere" class="pt-4">
+            <div id="sphereMount" class="w-full"></div>
+            <p class="text-xs text-gray-500 mt-2">Ruota la sfera per esplorare i quadranti politici colorati.</p>
+          </div>
+          <div id="tabCartesian" class="pt-4 hidden">
+            <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4 text-sm text-indigo-900 space-y-2">
+              <p><span class="font-semibold">x (economia):</span> ${x}</p>
+              <p><span class="font-semibold">y (diritti civili):</span> ${y}</p>
+              <p><span class="font-semibold">z (establishment):</span> ${z}</p>
+              <p class="text-xs text-indigo-700">Valori positivi indicano apertura verso il concetto indicato, valori negativi indicano un orientamento opposto.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6">
+        <h4 class="text-base font-semibold text-gray-700 mb-3">Legenda dei quadranti</h4>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs text-gray-600">
+          ${QUADRANT_LEGEND.map(({ number, descriptor, color }) => `
+            <div class="flex items-start gap-2 bg-gray-50 rounded-md p-3 border border-gray-100">
+              <span class="mt-0.5 inline-flex w-3 h-3 rounded-full" style="background:${color};"></span>
+              <div>
+                <p class="font-semibold text-gray-800">Quadrante ${number}</p>
+                <p>${descriptor}</p>
+              </div>
+            </div>
+          `).join('')}
         </div>
       </div>
       <div class="mt-6 flex gap-3">
@@ -500,7 +619,34 @@ function viewInsights() {
     viewLanguage();
   };
   // Initialize the sphere visualization
-  initSphere(document.getElementById('sphereMount'), norm);
+  initSphere(document.getElementById('sphereMount'), norm, { color: color.css });
+
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const sphereTab = document.getElementById('tabSphere');
+  const cartesianTab = document.getElementById('tabCartesian');
+
+  function activateTab(name) {
+    tabButtons.forEach((btn) => {
+      const isActive = btn.dataset.tabTarget === name;
+      btn.classList.toggle('text-indigo-700', isActive);
+      btn.classList.toggle('border-indigo-600', isActive);
+      btn.classList.toggle('border-b-2', isActive);
+      if (!isActive) {
+        btn.classList.add('text-gray-500');
+        btn.classList.remove('text-indigo-700');
+      } else {
+        btn.classList.remove('text-gray-500');
+      }
+    });
+    sphereTab.classList.toggle('hidden', name !== 'sphere');
+    cartesianTab.classList.toggle('hidden', name !== 'cartesian');
+  }
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('click', () => activateTab(btn.dataset.tabTarget));
+  });
+
+  activateTab('sphere');
 }
 
 /**
@@ -583,16 +729,17 @@ function viewReviews() {
 
 /**
  * Initializes a Three.js scene to render a unit sphere with a small
- * red dot representing the user's normalized position.  The scene
- * includes subtle lighting and axes for orientation.  Called from
+ * dot representing the user's normalized position.  The sphere is
+ * coloured by quadrants and can be orbited by the user.  Called from
  * viewInsights() after the #sphereMount container exists.
  */
-function initSphere(mount, point) {
+function initSphere(mount, point, options = {}) {
   // Fallback message if Three.js fails
   if (!THREE || !OrbitControls) {
     mount.innerHTML = '<div class="p-4 text-sm text-red-600">Impossibile caricare Three.js.</div>';
     return;
   }
+  const highlight = new THREE.Color(options.color || '#ff2d2d');
   const scene = new THREE.Scene();
   scene.background = null;
   const camera = new THREE.PerspectiveCamera(45, mount.clientWidth / mount.clientHeight, 0.1, 100);
@@ -606,9 +753,21 @@ function initSphere(mount, point) {
   const dir = new THREE.DirectionalLight(0xffffff, 0.8);
   dir.position.set(3, 3, 4);
   scene.add(dir);
-  // Blue sphere
+  // Colourful sphere
   const sphereGeo = new THREE.SphereGeometry(1, 48, 48);
-  const sphereMat = new THREE.MeshStandardMaterial({ color: 0x2d6cdf, metalness: 0.1, roughness: 0.6, opacity: 0.25, transparent: true });
+  const position = sphereGeo.attributes.position;
+  const colorArray = [];
+  const tempColor = new THREE.Color();
+  for (let i = 0; i < position.count; i++) {
+    const x = position.getX(i);
+    const y = position.getY(i);
+    const z = position.getZ(i);
+    const quadrant = quadrantFromVector(x, y, z);
+    tempColor.setHex(QUADRANT_COLORS[quadrant.index]);
+    colorArray.push(tempColor.r, tempColor.g, tempColor.b);
+  }
+  sphereGeo.setAttribute('color', new THREE.Float32BufferAttribute(colorArray, 3));
+  const sphereMat = new THREE.MeshStandardMaterial({ vertexColors: true, metalness: 0.15, roughness: 0.45, opacity: 0.85, transparent: true });
   const sphere = new THREE.Mesh(sphereGeo, sphereMat);
   scene.add(sphere);
   // Wireframe overlay
@@ -618,15 +777,10 @@ function initSphere(mount, point) {
   scene.add(wireMesh);
   // Red dot
   const dotGeo = new THREE.SphereGeometry(0.05, 24, 24);
-  const dotMat = new THREE.MeshStandardMaterial({ color: 0xff2d2d, emissive: 0x990000, metalness: 0.2, roughness: 0.4 });
+  const dotMat = new THREE.MeshStandardMaterial({ color: highlight, emissive: highlight.clone().multiplyScalar(0.4), metalness: 0.2, roughness: 0.35 });
   const dot = new THREE.Mesh(dotGeo, dotMat);
   dot.position.set(point.x, point.y, point.z);
   scene.add(dot);
-  // Axes helper
-  const axes = new THREE.AxesHelper(1.4);
-  axes.material.depthTest = false;
-  axes.renderOrder = 2;
-  scene.add(axes);
   // Controls
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
