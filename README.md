@@ -36,7 +36,7 @@ Non è necessaria alcuna installazione server-side: basta un browser moderno con
    - scegli il branch principale (ad esempio `main`) nel menu **Branch**;
    - lascia `/(root)` come cartella e clicca su **Save**.
 4. Attendi che GitHub completi il deploy: la pagina mostrerà il link pubblico appena pronto.
-5. Visita l'URL per verificare che la schermata della parola magica e il questionario funzionino come in locale.
+5. Visita l'URL per verificare che il questionario funzioni come in locale.
 6. Se vuoi disattivare il sito in futuro, torna nella stessa pagina e imposta **Source** su **None**.
 
 ## Struttura del progetto
