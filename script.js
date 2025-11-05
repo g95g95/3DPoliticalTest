@@ -13,6 +13,238 @@ const LANGUAGES = [
   { code: 'de', name: 'Deutsch', flag: { src: 'assets/flags/de.svg', alt: 'Flagge Deutschlands' } }
 ];
 
+const EDUCATION_OPTIONS = {
+  it: [
+    { value: 'postdoc', label: 'Post-doc' },
+    { value: 'phd', label: 'Dottorato' },
+    { value: 'laurea_magistrale', label: 'Laurea Magistrale' },
+    { value: 'laurea_triennale', label: 'Laurea Triennale' },
+    { value: 'diploma', label: 'Diploma' },
+    { value: 'terza_media', label: 'Terza Media' }
+  ],
+  en: [
+    { value: 'postdoc', label: 'Postdoc' },
+    { value: 'phd', label: 'PhD' },
+    { value: 'laurea_magistrale', label: 'Master’s Degree' },
+    { value: 'laurea_triennale', label: 'Bachelor’s Degree' },
+    { value: 'diploma', label: 'High School Diploma' },
+    { value: 'terza_media', label: 'Middle School' }
+  ],
+  es: [
+    { value: 'postdoc', label: 'Posdoctorado' },
+    { value: 'phd', label: 'Doctorado' },
+    { value: 'laurea_magistrale', label: 'Máster' },
+    { value: 'laurea_triennale', label: 'Grado' },
+    { value: 'diploma', label: 'Bachillerato' },
+    { value: 'terza_media', label: 'Educación secundaria' }
+  ],
+  fr: [
+    { value: 'postdoc', label: 'Postdoctorat' },
+    { value: 'phd', label: 'Doctorat' },
+    { value: 'laurea_magistrale', label: 'Master' },
+    { value: 'laurea_triennale', label: 'Licence' },
+    { value: 'diploma', label: 'Baccalauréat' },
+    { value: 'terza_media', label: 'Collège' }
+  ],
+  de: [
+    { value: 'postdoc', label: 'Postdoc' },
+    { value: 'phd', label: 'Promotion' },
+    { value: 'laurea_magistrale', label: 'Masterabschluss' },
+    { value: 'laurea_triennale', label: 'Bachelorabschluss' },
+    { value: 'diploma', label: 'Abitur' },
+    { value: 'terza_media', label: 'Mittlere Reife' }
+  ]
+};
+
+const INTEREST_OPTIONS = {
+  it: [
+    { value: 'letters', label: 'Lettere' },
+    { value: 'history', label: 'Storia' },
+    { value: 'music', label: 'Musica' },
+    { value: 'art', label: 'Arte' },
+    { value: 'architecture', label: 'Architettura' },
+    { value: 'engineering', label: 'Ingegneria' },
+    { value: 'math', label: 'Matematica' },
+    { value: 'physics', label: 'Fisica' },
+    { value: 'biology', label: 'Biologia' },
+    { value: 'chemistry', label: 'Chimica' },
+    { value: 'informatics', label: 'Informatica' },
+    { value: 'medicine', label: 'Medicina' }
+  ],
+  en: [
+    { value: 'letters', label: 'Literature' },
+    { value: 'history', label: 'History' },
+    { value: 'music', label: 'Music' },
+    { value: 'art', label: 'Art' },
+    { value: 'architecture', label: 'Architecture' },
+    { value: 'engineering', label: 'Engineering' },
+    { value: 'math', label: 'Mathematics' },
+    { value: 'physics', label: 'Physics' },
+    { value: 'biology', label: 'Biology' },
+    { value: 'chemistry', label: 'Chemistry' },
+    { value: 'informatics', label: 'Computer Science' },
+    { value: 'medicine', label: 'Medicine' }
+  ],
+  es: [
+    { value: 'letters', label: 'Literatura' },
+    { value: 'history', label: 'Historia' },
+    { value: 'music', label: 'Música' },
+    { value: 'art', label: 'Arte' },
+    { value: 'architecture', label: 'Arquitectura' },
+    { value: 'engineering', label: 'Ingeniería' },
+    { value: 'math', label: 'Matemáticas' },
+    { value: 'physics', label: 'Física' },
+    { value: 'biology', label: 'Biología' },
+    { value: 'chemistry', label: 'Química' },
+    { value: 'informatics', label: 'Informática' },
+    { value: 'medicine', label: 'Medicina' }
+  ],
+  fr: [
+    { value: 'letters', label: 'Lettres' },
+    { value: 'history', label: 'Histoire' },
+    { value: 'music', label: 'Musique' },
+    { value: 'art', label: 'Art' },
+    { value: 'architecture', label: 'Architecture' },
+    { value: 'engineering', label: 'Ingénierie' },
+    { value: 'math', label: 'Mathématiques' },
+    { value: 'physics', label: 'Physique' },
+    { value: 'biology', label: 'Biologie' },
+    { value: 'chemistry', label: 'Chimie' },
+    { value: 'informatics', label: 'Informatique' },
+    { value: 'medicine', label: 'Médecine' }
+  ],
+  de: [
+    { value: 'letters', label: 'Literatur' },
+    { value: 'history', label: 'Geschichte' },
+    { value: 'music', label: 'Musik' },
+    { value: 'art', label: 'Kunst' },
+    { value: 'architecture', label: 'Architektur' },
+    { value: 'engineering', label: 'Ingenieurwesen' },
+    { value: 'math', label: 'Mathematik' },
+    { value: 'physics', label: 'Physik' },
+    { value: 'biology', label: 'Biologie' },
+    { value: 'chemistry', label: 'Chemie' },
+    { value: 'informatics', label: 'Informatik' },
+    { value: 'medicine', label: 'Medizin' }
+  ]
+};
+
+const PROFILE_COPY = {
+  it: {
+    professionPlaceholder: 'Professione',
+    educationLabel: 'Titolo di studio',
+    educationPlaceholder: 'Seleziona il tuo titolo di studio',
+    interestLabel: 'Area di interesse',
+    interestPlaceholder: 'Seleziona un\'area',
+    missingEducation: 'Seleziona il titolo di studio per continuare.',
+    missingInterest: 'Seleziona un\'area di interesse per continuare.'
+  },
+  en: {
+    professionPlaceholder: 'Profession',
+    educationLabel: 'Education level',
+    educationPlaceholder: 'Select your education level',
+    interestLabel: 'Area of interest',
+    interestPlaceholder: 'Select an area',
+    missingEducation: 'Select an education level to continue.',
+    missingInterest: 'Select an area of interest to continue.'
+  },
+  es: {
+    professionPlaceholder: 'Profesión',
+    educationLabel: 'Título académico',
+    educationPlaceholder: 'Selecciona tu título académico',
+    interestLabel: 'Área de interés',
+    interestPlaceholder: 'Selecciona un área',
+    missingEducation: 'Selecciona un título académico para continuar.',
+    missingInterest: 'Selecciona un área de interés para continuar.'
+  },
+  fr: {
+    professionPlaceholder: 'Profession',
+    educationLabel: 'Niveau d\'études',
+    educationPlaceholder: 'Sélectionnez votre niveau d\'études',
+    interestLabel: 'Domaine d\'intérêt',
+    interestPlaceholder: 'Sélectionnez un domaine',
+    missingEducation: 'Sélectionnez un niveau d\'études pour continuer.',
+    missingInterest: 'Sélectionnez un domaine d\'intérêt pour continuer.'
+  },
+  de: {
+    professionPlaceholder: 'Beruf',
+    educationLabel: 'Bildungsabschluss',
+    educationPlaceholder: 'Wähle deinen Bildungsabschluss',
+    interestLabel: 'Interessensgebiet',
+    interestPlaceholder: 'Wähle ein Gebiet',
+    missingEducation: 'Wähle einen Bildungsabschluss, um fortzufahren.',
+    missingInterest: 'Wähle ein Interessensgebiet, um fortzufahren.'
+  }
+};
+
+const INSIGHTS_COPY = {
+  it: {
+    comparisonTitle: 'Confronto con la tua classe',
+    professionFilter: 'Filtra per professione',
+    educationFilter: 'Filtra per titolo di studio',
+    allOption: 'Tutti',
+    unspecifiedProfession: 'Non specificato',
+    globalAverage: 'Media globale',
+    professionAverage: 'Media professione',
+    educationAverage: 'Media titolo di studio',
+    combinationAverage: 'Media combinata',
+    sampleSize: (n) => `Campione: ${n}`,
+    noData: 'Nessun dato disponibile per questa selezione.'
+  },
+  en: {
+    comparisonTitle: 'Compare with your peers',
+    professionFilter: 'Filter by profession',
+    educationFilter: 'Filter by education',
+    allOption: 'All',
+    unspecifiedProfession: 'Unspecified',
+    globalAverage: 'Global average',
+    professionAverage: 'Profession average',
+    educationAverage: 'Education average',
+    combinationAverage: 'Combined average',
+    sampleSize: (n) => `Sample size: ${n}`,
+    noData: 'No data available for this selection.'
+  },
+  es: {
+    comparisonTitle: 'Comparación con tu grupo',
+    professionFilter: 'Filtrar por profesión',
+    educationFilter: 'Filtrar por título académico',
+    allOption: 'Todos',
+    unspecifiedProfession: 'Sin especificar',
+    globalAverage: 'Media global',
+    professionAverage: 'Media por profesión',
+    educationAverage: 'Media por título',
+    combinationAverage: 'Media combinada',
+    sampleSize: (n) => `Muestra: ${n}`,
+    noData: 'No hay datos disponibles para esta selección.'
+  },
+  fr: {
+    comparisonTitle: 'Comparer avec votre groupe',
+    professionFilter: 'Filtrer par profession',
+    educationFilter: 'Filtrer par niveau d\'études',
+    allOption: 'Tous',
+    unspecifiedProfession: 'Non spécifié',
+    globalAverage: 'Moyenne globale',
+    professionAverage: 'Moyenne par profession',
+    educationAverage: 'Moyenne par niveau d\'études',
+    combinationAverage: 'Moyenne combinée',
+    sampleSize: (n) => `Échantillon : ${n}`,
+    noData: 'Aucune donnée disponible pour cette sélection.'
+  },
+  de: {
+    comparisonTitle: 'Vergleich mit deiner Gruppe',
+    professionFilter: 'Nach Beruf filtern',
+    educationFilter: 'Nach Abschluss filtern',
+    allOption: 'Alle',
+    unspecifiedProfession: 'Nicht angegeben',
+    globalAverage: 'Globale Durchschnittswerte',
+    professionAverage: 'Berufsdurchschnitt',
+    educationAverage: 'Abschlussdurchschnitt',
+    combinationAverage: 'Kombinierter Durchschnitt',
+    sampleSize: (n) => `Stichprobe: ${n}`,
+    noData: 'Keine Daten für diese Auswahl verfügbar.'
+  }
+};
+
 const PHI_DESCRIPTORS = [
   'Mercato aperto · Diritti civili',
   'Mercato aperto · Ordine sociale',
@@ -33,6 +265,41 @@ const QUADRANT_COLORS = [
   0x4a4a82, 0x5d60a6, 0x767ec2, 0x8ea5d3,
   0x5f3b7b, 0x7a4ea2, 0x9a6fbe, 0xb695d3
 ];
+
+function getEducationOptions(lang) {
+  return EDUCATION_OPTIONS[lang] || EDUCATION_OPTIONS.it;
+}
+
+function getEducationLabel(value, lang) {
+  if (!value) return '';
+  const opts = getEducationOptions(lang);
+  const match = opts.find((opt) => opt.value === value);
+  if (match) return match.label;
+  // Fallback: search in Italian options to keep a readable label
+  const fallback = EDUCATION_OPTIONS.it.find((opt) => opt.value === value);
+  return fallback ? fallback.label : value;
+}
+
+function getInterestOptions(lang) {
+  return INTEREST_OPTIONS[lang] || INTEREST_OPTIONS.it;
+}
+
+function getInterestLabel(value, lang) {
+  if (!value) return '';
+  const opts = getInterestOptions(lang);
+  const match = opts.find((opt) => opt.value === value);
+  if (match) return match.label;
+  const fallback = INTEREST_OPTIONS.it.find((opt) => opt.value === value);
+  return fallback ? fallback.label : value;
+}
+
+function getProfileCopy(lang) {
+  return PROFILE_COPY[lang] || PROFILE_COPY.it;
+}
+
+function getInsightsCopy(lang) {
+  return INSIGHTS_COPY[lang] || INSIGHTS_COPY.it;
+}
 
 function descriptorFromSectors(phiSector, thetaSector) {
   const phiLabel = PHI_DESCRIPTORS[Math.min(phiSector, PHI_DESCRIPTORS.length - 1)] || '';
@@ -83,18 +350,26 @@ const state = {
   language: 'it',        // selected language code (it, en, es, fr, de)
   name: '',             // user name
   profession: '',       // user profession
-  education: '',        // user education (titolo di studio)
+  education: '',        // user education key (titolo di studio)
+  educationLabel: '',   // localized label for education
+  area: '',             // area of interest key
+  areaLabel: '',        // localized label for area of interest
   dob: '',              // date of birth
   idx: 0,               // current question index
   x: 0, y: 0, z: 0,     // Cartesian scores for economy, rights and establishment fidelity
   questions: [],        // currently loaded questions
   questionsByLang: {},  // cache of loaded questions by language
   weightTotals: { economia: 0, dirittocivilismo: 0, establishment: 0 },
-  answers: []           // user answers
+  answers: [],          // user answers
+  resultSaved: false,   // whether the current result has been persisted
+  filterProfession: 'all',
+  filterEducation: 'all',
+  profileError: ''
 };
 
 const AXES = ['economia', 'dirittocivilismo', 'establishment'];
-const MAX_RESPONSE_VALUE = 2;
+const ANSWER_LABELS = ['Sì molto', 'Sì', 'Non so', 'No', 'No molto'];
+const ANSWER_VALUES = [1, 0.5, 0, -0.5, -1];
 
 let QUADRANT_DATA = [];
 
@@ -120,6 +395,12 @@ function normalizeQuestionEntry(question) {
     }
     normalizedWeights[axis] = value;
   });
+  const weightSum = AXES.reduce((acc, axis) => acc + Math.abs(normalizedWeights[axis]), 0);
+  if (weightSum > 0) {
+    AXES.forEach((axis) => {
+      normalizedWeights[axis] = normalizedWeights[axis] / weightSum;
+    });
+  }
   return { ...question, weights: normalizedWeights };
 }
 
@@ -127,7 +408,7 @@ function computeWeightTotals(questions) {
   return questions.reduce((acc, question) => {
     AXES.forEach((axis) => {
       const weight = question.weights && typeof question.weights === 'object' ? Number(question.weights[axis]) || 0 : 0;
-      acc[axis] += weight;
+      acc[axis] += Math.abs(weight);
     });
     return acc;
   }, { economia: 0, dirittocivilismo: 0, establishment: 0 });
@@ -136,7 +417,7 @@ function computeWeightTotals(questions) {
 function getNormalizedScores() {
   const totals = state.weightTotals || {};
   const normalize = (score, axis) => {
-    const denom = (Number(totals[axis]) || 0) * MAX_RESPONSE_VALUE;
+    const denom = Number(totals[axis]) || 0;
     if (!denom) return 0;
     const value = score / denom;
     return Math.max(-1, Math.min(1, value));
@@ -145,6 +426,26 @@ function getNormalizedScores() {
     x: normalize(state.x, 'economia'),
     y: normalize(state.y, 'dirittocivilismo'),
     z: normalize(state.z, 'establishment')
+  };
+}
+
+function clampUnit(value) {
+  if (!Number.isFinite(value)) return 0;
+  if (value > 1) return 1;
+  if (value < -1) return -1;
+  return value;
+}
+
+function sanitizeHistoryEntry(entry) {
+  if (!entry || typeof entry !== 'object') return null;
+  const normalized = entry.normalized || {};
+  return {
+    ...entry,
+    normalized: {
+      x: clampUnit(normalized.x),
+      y: clampUnit(normalized.y),
+      z: clampUnit(normalized.z)
+    }
   };
 }
 
@@ -294,6 +595,71 @@ function saveReview(review) {
   localStorage.setItem('reviews', JSON.stringify(reviews));
 }
 
+function normalizeProfession(value) {
+  if (!value) return 'unspecified';
+  const trimmed = value.trim();
+  return trimmed ? trimmed.toLowerCase() : 'unspecified';
+}
+
+function loadResultHistory() {
+  try {
+    const raw = localStorage.getItem('results');
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.map(sanitizeHistoryEntry).filter(Boolean);
+  } catch (err) {
+    console.warn('Impossibile leggere i risultati salvati', err);
+    return [];
+  }
+}
+
+function saveResultHistory(history) {
+  localStorage.setItem('results', JSON.stringify(history));
+}
+
+function persistCurrentResult() {
+  if (state.resultSaved) return;
+  const res = computeResults();
+  const record = {
+    id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+    timestamp: Date.now(),
+    language: state.language,
+    name: state.name,
+    profession: state.profession,
+    professionKey: normalizeProfession(state.profession),
+    education: state.education,
+    educationLabel: state.educationLabel,
+    area: state.area,
+    areaLabel: state.areaLabel,
+    dob: state.dob,
+    quadrant: res.quadrant16,
+    normalized: res.normalized,
+    raw: res.raw
+  };
+  const history = loadResultHistory();
+  history.push(sanitizeHistoryEntry(record));
+  saveResultHistory(history);
+  state.resultSaved = true;
+}
+
+function computeAverageCoordinates(entries) {
+  if (!Array.isArray(entries) || !entries.length) return null;
+  const total = entries.reduce((acc, entry) => {
+    acc.x += entry.normalized?.x || 0;
+    acc.y += entry.normalized?.y || 0;
+    acc.z += entry.normalized?.z || 0;
+    return acc;
+  }, { x: 0, y: 0, z: 0 });
+  const count = entries.length;
+  return {
+    count,
+    x: total.x / count,
+    y: total.y / count,
+    z: total.z / count
+  };
+}
+
 /* --------------------------------------------------------------------------
  *  View renderers
  */
@@ -330,6 +696,9 @@ function viewLanguage() {
       state.name = '';
       state.profession = '';
       state.education = '';
+      state.educationLabel = '';
+      state.area = '';
+      state.areaLabel = '';
       state.dob = '';
       state.idx = 0;
       state.x = 0;
@@ -337,6 +706,10 @@ function viewLanguage() {
       state.z = 0;
       state.weightTotals = { economia: 0, dirittocivilismo: 0, establishment: 0 };
       state.answers = [];
+      state.resultSaved = false;
+      state.filterProfession = 'all';
+      state.filterEducation = 'all';
+      state.profileError = '';
       state.step = 1;
       viewWelcome();
     };
@@ -386,14 +759,32 @@ function viewWelcome() {
  */
 function viewProfile() {
   state.step = 2;
+  const educationOptions = getEducationOptions(state.language);
+  const interestOptions = getInterestOptions(state.language);
+  const copy = getProfileCopy(state.language);
+  const showInterest = Boolean(state.education);
   app.innerHTML = navBar() + `
     <div class="card p-8 mx-auto max-w-xl">
       <h2 class="text-2xl font-bold text-gray-900 mb-1">Ciao, ${escapeHtml(state.name)} 👋</h2>
       <p class="text-gray-600 mb-6">Ora completa questi dati.</p>
       <div class="grid gap-4">
-        <input id="profession" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Professione" />
-        <input id="education" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Titolo di studio" />
-        <input id="dob" type="date" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" />
+        <input id="profession" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="${escapeHtml(copy.professionPlaceholder)}" value="${escapeHtml(state.profession)}" />
+        <div class="flex flex-col gap-1">
+          <label for="education" class="text-sm font-semibold text-gray-700">${escapeHtml(copy.educationLabel)}</label>
+          <select id="education" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
+            <option value="">${escapeHtml(copy.educationPlaceholder)}</option>
+            ${educationOptions.map(({ value, label }) => `<option value="${value}" ${state.education === value ? 'selected' : ''}>${escapeHtml(label)}</option>`).join('')}
+          </select>
+        </div>
+        <div id="interestWrapper" class="flex flex-col gap-1 ${showInterest ? '' : 'hidden'}">
+          <label for="interest" class="text-sm font-semibold text-gray-700">${escapeHtml(copy.interestLabel)}</label>
+          <select id="interest" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
+            <option value="">${escapeHtml(copy.interestPlaceholder)}</option>
+            ${interestOptions.map(({ value, label }) => `<option value="${value}" ${state.area === value ? 'selected' : ''}>${escapeHtml(label)}</option>`).join('')}
+          </select>
+        </div>
+        <input id="dob" type="date" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" value="${state.dob}" />
+        <p id="profileError" class="text-sm text-rose-600 ${state.profileError ? '' : 'hidden'}">${state.profileError ? escapeHtml(state.profileError) : ''}</p>
       </div>
       <div class="mt-6 flex gap-3">
         <button id="backProfile" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-900 font-medium rounded-lg px-4 py-3">Indietro</button>
@@ -409,15 +800,94 @@ function viewProfile() {
     state.step = 1;
     viewWelcome();
   };
+  const educationSelect = document.getElementById('education');
+  const interestWrapper = document.getElementById('interestWrapper');
+  const interestSelect = document.getElementById('interest');
+  const errorField = document.getElementById('profileError');
+  const clearError = () => {
+    if (errorField) {
+      errorField.textContent = '';
+      errorField.classList.add('hidden');
+    }
+    state.profileError = '';
+  };
+  if (educationSelect) {
+    educationSelect.onchange = () => {
+      clearError();
+      const value = educationSelect.value;
+      if (value) {
+        state.education = value;
+        state.educationLabel = getEducationLabel(value, state.language);
+      } else {
+        state.education = '';
+        state.educationLabel = '';
+        state.area = '';
+        state.areaLabel = '';
+      }
+      if (interestWrapper) {
+        if (value) {
+          interestWrapper.classList.remove('hidden');
+        } else {
+          interestWrapper.classList.add('hidden');
+          if (interestSelect) interestSelect.value = '';
+        }
+      }
+    };
+  }
+  if (interestSelect) {
+    interestSelect.onchange = () => {
+      clearError();
+      const areaValue = interestSelect.value;
+      if (areaValue) {
+        state.area = areaValue;
+        state.areaLabel = getInterestLabel(areaValue, state.language);
+      } else {
+        state.area = '';
+        state.areaLabel = '';
+      }
+    };
+  }
   // Confirm and proceed to quiz
   document.getElementById('goProfile').onclick = () => {
-    state.profession = document.getElementById('profession').value.trim();
-    state.education = document.getElementById('education').value.trim();
-    state.dob = document.getElementById('dob').value;
+    clearError();
+    const copyNow = getProfileCopy(state.language);
+    const professionValue = document.getElementById('profession').value.trim();
+    const educationValue = educationSelect ? educationSelect.value : '';
+    const interestValue = interestSelect ? interestSelect.value : '';
+    const dobValue = document.getElementById('dob').value;
+    if (!educationValue) {
+      if (errorField) {
+        errorField.textContent = copyNow.missingEducation;
+        errorField.classList.remove('hidden');
+      }
+      state.profileError = copyNow.missingEducation;
+      return;
+    }
+    if (educationValue && !interestValue) {
+      if (errorField) {
+        errorField.textContent = copyNow.missingInterest;
+        errorField.classList.remove('hidden');
+      }
+      state.profileError = copyNow.missingInterest;
+      return;
+    }
+    if (!dobValue) {
+      alert('impossibile andare avanti');
+      state.profileError = '';
+      return;
+    }
+    state.profileError = '';
+    state.profession = professionValue;
+    state.education = educationValue;
+    state.educationLabel = getEducationLabel(educationValue, state.language);
+    state.area = interestValue;
+    state.areaLabel = getInterestLabel(interestValue, state.language);
+    state.dob = dobValue;
     state.idx = 0;
     state.x = 0; state.y = 0; state.z = 0;
     state.weightTotals = { economia: 0, dirittocivilismo: 0, establishment: 0 };
     state.answers = [];
+    state.resultSaved = false;
     loadQuestions().then(() => viewQuiz());
   };
 }
@@ -448,8 +918,8 @@ function viewQuiz() {
       </div>
       <h3 class="text-xl font-semibold text-gray-900 mb-6">${escapeHtml(q.title)}</h3>
       <div class="grid md:grid-cols-5 gap-3">
-        ${['Sì molto','Sì','Non so','No','Molto no'].map((lbl, i) => {
-          const value = [2, 1, 0, -1, -2][i];
+        ${ANSWER_LABELS.map((lbl, i) => {
+          const value = ANSWER_VALUES[i];
           return `<button data-v="${value}" class="ans bg-white border border-gray-300 hover:border-indigo-500 hover:shadow-sm rounded-lg px-3 py-3 text-sm font-medium">${lbl}</button>`;
         }).join('')}
       </div>
@@ -466,7 +936,7 @@ function viewQuiz() {
   // Handle answer selection
   document.querySelectorAll('.ans').forEach((btn) => {
     btn.onclick = () => {
-      const score = parseInt(btn.dataset.v, 10);
+      const score = Number(btn.dataset.v);
       applyScore(q, score);
       state.answers[state.idx] = score;
       stepForward();
@@ -542,8 +1012,9 @@ function finish() {
 function computeResults() {
   const normalized = getNormalizedScores();
   const { x, y, z } = normalized;
-  const r = Math.sqrt(x * x + y * y + z * z) || 0;
-  const theta = r ? Math.acos(z / (r || 1)) : 0; // 0..π
+  const magnitude = Math.sqrt(x * x + y * y + z * z) || 0;
+  const r = Math.min(1, magnitude / Math.sqrt(3));
+  const theta = magnitude ? Math.acos(z / (magnitude || 1)) : 0; // 0..π
   let phi = Math.atan2(y, x);             // -π..π
   // Normalize phi to 0..2π
   if (phi < 0) phi += 2 * Math.PI;
@@ -568,6 +1039,7 @@ function computeResults() {
     y,
     z,
     normalized,
+    rawRadius: magnitude,
     raw: { x: state.x, y: state.y, z: state.z },
     quadrantInfo: extra
   };
@@ -579,6 +1051,8 @@ function computeResults() {
  */
 function viewResult() {
   state.step = 4;
+  // Salva il risultato corrente la prima volta che si arriva qui
+  persistCurrentResult();
   // Calcola il quadrante e prepara la descrizione
   const result = computeResults();
   const { quadrant16, descriptor, color, normalized } = result;
@@ -627,11 +1101,18 @@ function viewResult() {
     state.name = '';
     state.profession = '';
     state.education = '';
+    state.educationLabel = '';
+    state.area = '';
+    state.areaLabel = '';
     state.dob = '';
     state.idx = 0;
     state.x = 0; state.y = 0; state.z = 0;
     state.weightTotals = { economia: 0, dirittocivilismo: 0, establishment: 0 };
     state.answers = [];
+    state.resultSaved = false;
+    state.filterProfession = 'all';
+    state.filterEducation = 'all';
+    state.profileError = '';
     viewLanguage();
   };
   // Submit review button
@@ -647,8 +1128,9 @@ function viewResult() {
  */
 function viewInsights() {
   state.step = 5;
+  persistCurrentResult();
   const res = computeResults();
-  const { r, phiDeg, thetaDeg, quadrant16, descriptor, color, normalized, raw, quadrantInfo } = res;
+  const { r, phiDeg, thetaDeg, quadrant16, descriptor, color, normalized, raw, quadrantInfo, rawRadius } = res;
   const totals = state.weightTotals || { economia: 0, dirittocivilismo: 0, establishment: 0 };
   const legend = getQuadrantLegend();
   const stats = [
@@ -664,6 +1146,116 @@ function viewInsights() {
   };
   const affiliations = quadrantInfo?.affiliazionepolitica;
   const affiliationList = Array.isArray(affiliations) ? affiliations : (affiliations ? [affiliations] : []);
+  const insightsCopy = getInsightsCopy(state.language);
+  const history = loadResultHistory();
+  const currentProfessionKey = normalizeProfession(state.profession);
+  const professionMap = new Map();
+  let hasUnspecified = false;
+  history.forEach((entry) => {
+    const key = entry.professionKey || 'unspecified';
+    if (key === 'unspecified') hasUnspecified = true;
+    const label = entry.profession && entry.profession.trim() ? entry.profession.trim() : insightsCopy.unspecifiedProfession;
+    if (!professionMap.has(key) && key !== 'unspecified') {
+      professionMap.set(key, label);
+    }
+  });
+  if (currentProfessionKey && currentProfessionKey !== 'unspecified' && state.profession && !professionMap.has(currentProfessionKey)) {
+    professionMap.set(currentProfessionKey, state.profession);
+  }
+  if (hasUnspecified || !professionMap.size) {
+    professionMap.set('unspecified', insightsCopy.unspecifiedProfession);
+  }
+  if ((!state.filterProfession || state.filterProfession === 'all') && currentProfessionKey && currentProfessionKey !== 'unspecified') {
+    state.filterProfession = currentProfessionKey;
+  }
+  if ((!state.filterEducation || state.filterEducation === 'all') && state.education) {
+    state.filterEducation = state.education;
+  }
+  const selectedProfession = state.filterProfession || 'all';
+  const selectedEducation = state.filterEducation || 'all';
+  const professionOptionsList = Array.from(professionMap.entries()).sort((a, b) => {
+    if (a[0] === 'unspecified') return 1;
+    if (b[0] === 'unspecified') return -1;
+    return a[1].localeCompare(b[1], state.language);
+  });
+  if (selectedProfession !== 'all' && !professionMap.has(selectedProfession)) {
+    professionOptionsList.push([selectedProfession, state.profession || insightsCopy.unspecifiedProfession]);
+  }
+  const professionOptions = [
+    `<option value="all"${selectedProfession === 'all' ? ' selected' : ''}>${escapeHtml(insightsCopy.allOption)}</option>`,
+    ...professionOptionsList.map(([value, label]) => `<option value="${value}"${value === selectedProfession ? ' selected' : ''}>${escapeHtml(label)}</option>`)
+  ];
+  const educationList = [...getEducationOptions(state.language)];
+  const educationSeen = new Set(educationList.map((opt) => opt.value));
+  if (selectedEducation !== 'all' && !educationSeen.has(selectedEducation)) {
+    educationList.push({ value: selectedEducation, label: getEducationLabel(selectedEducation, state.language) });
+  }
+  const educationOptions = [
+    `<option value="all"${selectedEducation === 'all' ? ' selected' : ''}>${escapeHtml(insightsCopy.allOption)}</option>`,
+    ...educationList.map(({ value, label }) => `<option value="${value}"${value === selectedEducation ? ' selected' : ''}>${escapeHtml(label)}</option>`)
+  ];
+  const formatNumber = (value) => {
+    const rounded = round(value);
+    return Object.is(rounded, -0) ? '0' : `${rounded}`;
+  };
+  const formatDiff = (value) => {
+    const rounded = round(value);
+    if (Object.is(rounded, -0) || rounded === 0) return '0';
+    return rounded > 0 ? `+${rounded}` : `${rounded}`;
+  };
+  const axisMeta = [
+    { axis: 'x', label: stats[0].label },
+    { axis: 'y', label: stats[1].label },
+    { axis: 'z', label: stats[2].label }
+  ];
+  const renderAverageCard = (title, avg, subtitle = '') => {
+    if (!avg) return '';
+    const subtitleSafe = subtitle ? ` · ${escapeHtml(subtitle)}` : '';
+    const axisHtml = axisMeta.map(({ axis, label }) => `
+      <div class="space-y-1">
+        <p class="font-semibold">${escapeHtml(label)}</p>
+        <p>${formatNumber(avg[axis])}</p>
+        <p class="text-[11px] text-gray-500">Δ ${formatDiff(normalized[axis] - avg[axis])}</p>
+      </div>
+    `).join('');
+    return `
+      <div class="bg-white border border-indigo-100 rounded-lg p-4 shadow-sm space-y-3">
+        <div class="flex items-center justify-between text-sm font-semibold text-gray-700">
+          <span>${escapeHtml(title)}${subtitleSafe}</span>
+          <span class="text-indigo-600">${escapeHtml(insightsCopy.sampleSize(avg.count))}</span>
+        </div>
+        <div class="grid grid-cols-3 gap-3 text-xs text-gray-700">
+          ${axisHtml}
+        </div>
+      </div>
+    `;
+  };
+  const globalAvg = computeAverageCoordinates(history);
+  const professionEntries = selectedProfession === 'all' ? [] : history.filter((entry) => entry.professionKey === selectedProfession);
+  const professionAvg = selectedProfession === 'all' ? null : computeAverageCoordinates(professionEntries);
+  const professionLabel = selectedProfession === 'all' ? '' : (professionMap.get(selectedProfession) || insightsCopy.unspecifiedProfession);
+  const educationEntries = selectedEducation === 'all' ? [] : history.filter((entry) => entry.education === selectedEducation);
+  const educationAvg = selectedEducation === 'all' ? null : computeAverageCoordinates(educationEntries);
+  const educationLabel = selectedEducation === 'all' ? '' : getEducationLabel(selectedEducation, state.language);
+  const combinationEntries = history.filter((entry) => {
+    const matchesProfession = selectedProfession === 'all' ? true : entry.professionKey === selectedProfession;
+    const matchesEducation = selectedEducation === 'all' ? true : entry.education === selectedEducation;
+    return matchesProfession && matchesEducation;
+  });
+  const combinationAvg = computeAverageCoordinates(combinationEntries);
+  const combinationSubtitle = [professionLabel, educationLabel].filter(Boolean).join(' · ');
+  const cards = [];
+  if (globalAvg) cards.push(renderAverageCard(insightsCopy.globalAverage, globalAvg));
+  if (professionAvg) cards.push(renderAverageCard(insightsCopy.professionAverage, professionAvg, professionLabel));
+  if (educationAvg) cards.push(renderAverageCard(insightsCopy.educationAverage, educationAvg, educationLabel));
+  if ((selectedProfession !== 'all' || selectedEducation !== 'all') && combinationAvg) {
+    cards.push(renderAverageCard(insightsCopy.combinationAverage, combinationAvg, combinationSubtitle));
+  }
+  const cardsHtml = cards.join('');
+  const comparisonFallback = cardsHtml || `<p class="text-sm text-gray-500">${escapeHtml(insightsCopy.noData)}</p>`;
+  const combinationMessage = (!combinationAvg && (selectedProfession !== 'all' || selectedEducation !== 'all'))
+    ? `<p class="text-sm text-gray-500 mt-3">${escapeHtml(insightsCopy.noData)}</p>`
+    : '';
   app.innerHTML = navBar() + `
     <div class="card p-8 mx-auto max-w-5xl">
       <h3 class="text-2xl font-bold mb-4">Dettaglio del risultato</h3>
@@ -678,7 +1270,7 @@ function viewInsights() {
       </div>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="space-y-3 text-sm sm:text-base text-gray-800">
-          <div><span class="font-semibold">r:</span> ${round(r)}</div>
+          <div><span class="font-semibold">r (normalizzato 0-1):</span> ${round(r)}${rawRadius ? ` · <span class="text-xs text-gray-500">|v| = ${round(rawRadius)}</span>` : ''}</div>
           <div><span class="font-semibold">φ:</span> ${round(phiDeg)}°</div>
           <div><span class="font-semibold">θ:</span> ${round(thetaDeg)}°</div>
           <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4 text-indigo-900 text-sm space-y-2">
@@ -708,6 +1300,27 @@ function viewInsights() {
             </div>
           </div>
         </div>
+      </div>
+      <div class="mt-8">
+        <h4 class="text-base font-semibold text-gray-700 mb-3">${escapeHtml(insightsCopy.comparisonTitle)}</h4>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1">
+            <label for="filterProfession" class="text-sm font-medium text-gray-700">${escapeHtml(insightsCopy.professionFilter)}</label>
+            <select id="filterProfession" class="rounded-lg border border-gray-300 px-4 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+              ${professionOptions.join('')}
+            </select>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="filterEducation" class="text-sm font-medium text-gray-700">${escapeHtml(insightsCopy.educationFilter)}</label>
+            <select id="filterEducation" class="rounded-lg border border-gray-300 px-4 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+              ${educationOptions.join('')}
+            </select>
+          </div>
+        </div>
+        <div class="mt-4 grid md:grid-cols-2 gap-4" id="comparisonCards">
+          ${comparisonFallback}
+        </div>
+        ${combinationMessage}
       </div>
       <div class="mt-6">
         <h4 class="text-base font-semibold text-gray-700 mb-3">Legenda dei quadranti</h4>
@@ -744,13 +1357,34 @@ function viewInsights() {
     state.name = '';
     state.profession = '';
     state.education = '';
+    state.educationLabel = '';
+    state.area = '';
+    state.areaLabel = '';
     state.dob = '';
     state.idx = 0;
     state.x = 0; state.y = 0; state.z = 0;
     state.weightTotals = { economia: 0, dirittocivilismo: 0, establishment: 0 };
     state.answers = [];
+    state.resultSaved = false;
+    state.filterProfession = 'all';
+    state.filterEducation = 'all';
+    state.profileError = '';
     viewLanguage();
   };
+  const filterProfessionEl = document.getElementById('filterProfession');
+  if (filterProfessionEl) {
+    filterProfessionEl.onchange = () => {
+      state.filterProfession = filterProfessionEl.value;
+      viewInsights();
+    };
+  }
+  const filterEducationEl = document.getElementById('filterEducation');
+  if (filterEducationEl) {
+    filterEducationEl.onchange = () => {
+      state.filterEducation = filterEducationEl.value;
+      viewInsights();
+    };
+  }
   const sphereMount = document.getElementById('sphereMount');
   const cartesianMount = document.getElementById('cartesianMount');
   const tabButtons = document.querySelectorAll('.tab-btn');
