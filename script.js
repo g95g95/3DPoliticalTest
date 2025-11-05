@@ -70,6 +70,7 @@ const INTEREST_OPTIONS = {
     { value: 'physics', label: 'Fisica' },
     { value: 'biology', label: 'Biologia' },
     { value: 'chemistry', label: 'Chimica' },
+    { value: 'architecture', label: 'Architettura' },
     { value: 'informatics', label: 'Informatica' },
     { value: 'medicine', label: 'Medicina' }
   ],
@@ -82,7 +83,8 @@ const INTEREST_OPTIONS = {
     { value: 'math', label: 'Mathematics' },
     { value: 'physics', label: 'Physics' },
     { value: 'biology', label: 'Biology' },
-    { value: 'chemistry', label: 'Chemistry' },
+      { value: 'chemistry', label: 'Chemistry' },
+      { value: 'architecture', label: 'Architettura' },
     { value: 'informatics', label: 'Computer Science' },
     { value: 'medicine', label: 'Medicine' }
   ],
@@ -95,6 +97,7 @@ const INTEREST_OPTIONS = {
     { value: 'math', label: 'Matemáticas' },
     { value: 'physics', label: 'Física' },
     { value: 'biology', label: 'Biología' },
+      { value: 'architecture', label: 'Architettura' },
     { value: 'chemistry', label: 'Química' },
     { value: 'informatics', label: 'Informática' },
     { value: 'medicine', label: 'Medicina' }
