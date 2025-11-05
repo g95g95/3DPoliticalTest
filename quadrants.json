@@ -1,114 +1,450 @@
 [
   {
-    "id": 1,
-    "name": "Liberal istituzionale",
-    "content": "Equilibrio tra mercato aperto e diritti civili con forte fiducia nelle istituzioni esistenti.",
-    "bounds": { "phi": [0, 90], "theta": [0, 45] },
-    "affiliazionepolitica": ["Renew Europe", "Partito Radicale storico"]
+    "id": "Q1-S1",
+    "name": "Socialismo pianificato autoritario - fedeltà istituzionale",
+    "content": "Economia centralmente pianificata, ordine rigido e piena adesione all'apparato statale esistente.",
+    "bounds": {
+      "x": [-1.0, -0.5],
+      "y": [-1.0, 0.0],
+      "z": [-1.0, -0.5]
+    },
+    "affiliazionepolitica": [
+      "Partito Comunista Cinese",
+      "Partito Comunista del Vietnam"
+    ]
   },
   {
-    "id": 2,
-    "name": "Liberal pragmatico",
-    "content": "Approccio liberale ai diritti e all'economia ma con una vena riformista critica verso lo status quo.",
-    "bounds": { "phi": [0, 90], "theta": [45, 90] },
-    "affiliazionepolitica": ["Partito Democratico (ala riformista)", "Liberali sociali"]
+    "id": "Q1-S2",
+    "name": "Socialismo pianificato autoritario - cautela istituzionale",
+    "content": "Pianificazione statale rigida con aggiustamenti graduali e cooperazione prudente con le burocrazie consolidate.",
+    "bounds": {
+      "x": [-1.0, -0.5],
+      "y": [-1.0, 0.0],
+      "z": [-0.5, 0.0]
+    },
+    "affiliazionepolitica": [
+      "Partito Comunista Cubano",
+      "Partito del Lavoro di Corea"
+    ]
   },
   {
-    "id": 3,
-    "name": "Liberal critico",
-    "content": "Difesa di diritti individuali e mercato concorrenziale accompagnata da controllo vigile sulle istituzioni.",
-    "bounds": { "phi": [0, 90], "theta": [90, 135] },
-    "affiliazionepolitica": ["Open Society movements", "Società civile europeista"]
+    "id": "Q1-S3",
+    "name": "Socialismo pianificato autoritario - opposizione sorvegliata",
+    "content": "Stato totalizzante che tollera solo movimenti controllati per riformare le istituzioni dall'interno con grande sospetto verso le élite.",
+    "bounds": {
+      "x": [-1.0, -0.5],
+      "y": [-1.0, 0.0],
+      "z": [0.0, 0.5]
+    },
+    "affiliazionepolitica": [
+      "Comunismo di sinistra in Russia post-sovietica",
+      "Movimenti marxisti-leninisti critici verso la nomenklatura"
+    ]
   },
   {
-    "id": 4,
-    "name": "Liberal movimentista",
-    "content": "Impostazione liberale e cosmopolita che ricerca cambiamenti rapidi anche contro le istituzioni consolidate.",
-    "bounds": { "phi": [0, 90], "theta": [135, 180] },
-    "affiliazionepolitica": ["Volt Europa", "Movimenti libertari progressisti"]
+    "id": "Q1-S4",
+    "name": "Socialismo pianificato autoritario - rottura rivoluzionaria",
+    "content": "Avanguardia rivoluzionaria che propone un ritorno al controllo totale dei mezzi di produzione sfidando apertamente l'apparato dirigente attuale.",
+    "bounds": {
+      "x": [-1.0, -0.5],
+      "y": [-1.0, 0.0],
+      "z": [0.5, 1.0]
+    },
+    "affiliazionepolitica": [
+      "Movimenti maoisti insurrezionali",
+      "Frazioni rivoluzionarie del comunismo guevarista"
+    ]
   },
   {
-    "id": 5,
-    "name": "Conservatore istituzionale",
-    "content": "Valorizzazione del mercato e dell'ordine sociale con forte sostegno allo status quo istituzionale.",
-    "bounds": { "phi": [90, 180], "theta": [0, 45] },
-    "affiliazionepolitica": ["Partito Popolare Europeo", "Moderati liberali-conservatori"]
+    "id": "Q2-S1",
+    "name": "Socialdemocrazia dirigista - fedeltà istituzionale",
+    "content": "Stato interventista, welfare esteso e forte fiducia negli apparati parlamentari e sociali consolidati.",
+    "bounds": {
+      "x": [-0.5, 0.0],
+      "y": [-1.0, 0.0],
+      "z": [-1.0, -0.5]
+    },
+    "affiliazionepolitica": [
+      "SPD tedesca anni '70",
+      "Partito Laburista britannico postbellico"
+    ]
   },
   {
-    "id": 6,
-    "name": "Conservatore pragmatico",
-    "content": "Tradizionalismo sociale e mercato aperto temperati da richieste di riforma graduale.",
-    "bounds": { "phi": [90, 180], "theta": [45, 90] },
-    "affiliazionepolitica": ["Forza Italia", "Conservatori liberali"]
+    "id": "Q2-S2",
+    "name": "Socialdemocrazia dirigista - cautela istituzionale",
+    "content": "Welfare robusto e pianificazione settoriale con disponibilità a riforme negoziate all'interno delle strutture di potere.",
+    "bounds": {
+      "x": [-0.5, 0.0],
+      "y": [-1.0, 0.0],
+      "z": [-0.5, 0.0]
+    },
+    "affiliazionepolitica": [
+      "Nuova Sinistra scandinava",
+      "Socialdemocrazia mediterranea degli anni '90"
+    ]
   },
   {
-    "id": 7,
-    "name": "Conservatore critico",
-    "content": "Sostegno all'ordine e alla concorrenza ma con crescente sfiducia verso l'establishment centrale.",
-    "bounds": { "phi": [90, 180], "theta": [90, 135] },
-    "affiliazionepolitica": ["Partiti conservatori euroscettici", "Tea Party"]
+    "id": "Q2-S3",
+    "name": "Socialdemocrazia dirigista - opposizione sorvegliata",
+    "content": "Socialdemocrazia statalista che assume toni anti-élite e chiede commissioni popolari di controllo sulle istituzioni.",
+    "bounds": {
+      "x": [-0.5, 0.0],
+      "y": [-1.0, 0.0],
+      "z": [0.0, 0.5]
+    },
+    "affiliazionepolitica": [
+      "Partito dei Lavoratori brasiliano fase Lula iniziale",
+      "Sinistra patriottica francese"
+    ]
   },
   {
-    "id": 8,
-    "name": "Conservatore populista",
-    "content": "Visione nazional-conservatrice e mercatista che sfida apertamente le istituzioni tradizionali.",
-    "bounds": { "phi": [90, 180], "theta": [135, 180] },
-    "affiliazionepolitica": ["Fratelli d'Italia", "Law and Justice"]
+    "id": "Q2-S4",
+    "name": "Socialdemocrazia dirigista - rottura rivoluzionaria",
+    "content": "Settori socialdemocratici radicalizzati che reclamano nazionalizzazioni estese e democrazia operaia contro l'establishment.",
+    "bounds": {
+      "x": [-0.5, 0.0],
+      "y": [-1.0, 0.0],
+      "z": [0.5, 1.0]
+    },
+    "affiliazionepolitica": [
+      "Correnti marxiste del Labour",
+      "Fazioni radicali dei partiti socialisti europei"
+    ]
   },
   {
-    "id": 9,
-    "name": "Statalista istituzionale",
-    "content": "Intervento pubblico e ordine sociale coordinati con piena fiducia nelle strutture statali.",
-    "bounds": { "phi": [180, 270], "theta": [0, 45] },
-    "affiliazionepolitica": ["Partito Comunista Cinese", "Socialdemocrazie classiciste"]
+    "id": "Q3-S1",
+    "name": "Mercato regolato autoritario - fedeltà istituzionale",
+    "content": "Capitalismo di stato che utilizza incentivi di mercato mantenendo un controllo verticale e stabile delle istituzioni.",
+    "bounds": {
+      "x": [0.0, 0.5],
+      "y": [-1.0, 0.0],
+      "z": [-1.0, -0.5]
+    },
+    "affiliazionepolitica": [
+      "Partito Comunista Cinese dopo le riforme di Deng",
+      "Singapore People's Action Party"
+    ]
   },
   {
-    "id": 10,
-    "name": "Statalista pragmatico",
-    "content": "Regolazione economica e valori tradizionali accompagnati da istanze riformiste moderate.",
-    "bounds": { "phi": [180, 270], "theta": [45, 90] },
-    "affiliazionepolitica": ["Partito Laburista (ala tradizionale)", "Peronismo moderato"]
+    "id": "Q3-S2",
+    "name": "Mercato regolato autoritario - cautela istituzionale",
+    "content": "Aperture di mercato guidate dallo Stato con riforme graduali e gestione tecnocratica del consenso.",
+    "bounds": {
+      "x": [0.0, 0.5],
+      "y": [-1.0, 0.0],
+      "z": [-0.5, 0.0]
+    },
+    "affiliazionepolitica": [
+      "Partito Comunista del Laos",
+      "Partito Comunista Cubano riformista"
+    ]
   },
   {
-    "id": 11,
-    "name": "Statalista critico",
-    "content": "Preferenza per stato forte e ordine sociale ma con toni anti-establishment verso élite consolidate.",
-    "bounds": { "phi": [180, 270], "theta": [90, 135] },
-    "affiliazionepolitica": ["Sinistra patriottica", "Partiti red-brown"]
+    "id": "Q3-S3",
+    "name": "Mercato regolato autoritario - opposizione sorvegliata",
+    "content": "Governi che combinano controllo sociale con capitalismo clientelare e movimenti interni che spingono contro le élite tradizionali.",
+    "bounds": {
+      "x": [0.0, 0.5],
+      "y": [-1.0, 0.0],
+      "z": [0.0, 0.5]
+    },
+    "affiliazionepolitica": [
+      "Russia putiniana con opposizioni nazional-statali",
+      "Correnti sovraniste in Ungheria"
+    ]
   },
   {
-    "id": 12,
-    "name": "Statalista movimentista",
-    "content": "Populismo sociale che richiede intervento pubblico incisivo e contestazione dura dell'establishment.",
-    "bounds": { "phi": [180, 270], "theta": [135, 180] },
-    "affiliazionepolitica": ["Chavismo", "Movimenti socialisti bolivariani"]
+    "id": "Q3-S4",
+    "name": "Mercato regolato autoritario - rottura rivoluzionaria",
+    "content": "Coalizioni che invocano capitalismo nazionale duro, purghe nell'apparato e contrapposizione aperta alle élite globali.",
+    "bounds": {
+      "x": [0.0, 0.5],
+      "y": [-1.0, 0.0],
+      "z": [0.5, 1.0]
+    },
+    "affiliazionepolitica": [
+      "Movimenti nazional-bolivariani autoritari",
+      "Fazioni sovraniste estreme in Europa centrale"
+    ]
   },
   {
-    "id": 13,
-    "name": "Solidale istituzionale",
-    "content": "Intervento statale per diritti e welfare con forte cooperazione con le istituzioni liberaldemocratiche.",
-    "bounds": { "phi": [270, 360], "theta": [0, 45] },
-    "affiliazionepolitica": ["Socialdemocrazia nordica", "Verdi moderati"]
+    "id": "Q4-S1",
+    "name": "Capitalismo securitario - fedeltà istituzionale",
+    "content": "Mercato competitivo con forte apparato di sicurezza e difesa delle strutture statali tradizionali.",
+    "bounds": {
+      "x": [0.5, 1.0],
+      "y": [-1.0, 0.0],
+      "z": [-1.0, -0.5]
+    },
+    "affiliazionepolitica": [
+      "Repubblicani USA era Guerra Fredda",
+      "Partiti conservatori europei filo-NATO"
+    ]
   },
   {
-    "id": 14,
-    "name": "Solidale pragmatico",
-    "content": "Diritti civili ampliati e welfare universale con richieste riformiste verso il sistema vigente.",
-    "bounds": { "phi": [270, 360], "theta": [45, 90] },
-    "affiliazionepolitica": ["Sinistra riformista", "Democratici USA ala progressista"]
+    "id": "Q4-S2",
+    "name": "Capitalismo securitario - cautela istituzionale",
+    "content": "Conservatorismo pro-business che cerca riforme calibrate preservando gerarchie e istituzioni consolidate.",
+    "bounds": {
+      "x": [0.5, 1.0],
+      "y": [-1.0, 0.0],
+      "z": [-0.5, 0.0]
+    },
+    "affiliazionepolitica": [
+      "Forza Italia",
+      "Partito Liberal Democratico giapponese"
+    ]
   },
   {
-    "id": 15,
-    "name": "Solidale critico",
-    "content": "Visione solidale e libertaria che guarda con sospetto le istituzioni esistenti chiedendo maggiore partecipazione.",
-    "bounds": { "phi": [270, 360], "theta": [90, 135] },
-    "affiliazionepolitica": ["Movimenti municipalisti", "Podemos (origini)"]
+    "id": "Q4-S3",
+    "name": "Capitalismo securitario - opposizione sorvegliata",
+    "content": "Destra ordine e mercato che critica l'establishment burocratico chiedendo purghe selettive ma senza abbatterlo interamente.",
+    "bounds": {
+      "x": [0.5, 1.0],
+      "y": [-1.0, 0.0],
+      "z": [0.0, 0.5]
+    },
+    "affiliazionepolitica": [
+      "Tea Party",
+      "Conservatori euroscettici britannici"
+    ]
   },
   {
-    "id": 16,
-    "name": "Solidale movimentista",
-    "content": "Intersezione tra giustizia sociale e diritti civili con spinta radicale anti-establishment.",
-    "bounds": { "phi": [270, 360], "theta": [135, 180] },
-    "affiliazionepolitica": ["Fridays for Future", "Democratic Socialists of America"]
+    "id": "Q4-S4",
+    "name": "Capitalismo securitario - rottura rivoluzionaria",
+    "content": "Nazional-capitalismo radicale con pulsioni autoritarie che mira a rifondare lo Stato contro élite percepite come decadenti.",
+    "bounds": {
+      "x": [0.5, 1.0],
+      "y": [-1.0, 0.0],
+      "z": [0.5, 1.0]
+    },
+    "affiliazionepolitica": [
+      "Fratelli d'Italia",
+      "Law and Justice"
+    ]
+  },
+  {
+    "id": "Q5-S1",
+    "name": "Socialismo comunitario libertario - fedeltà istituzionale",
+    "content": "Economia collettiva decentrata con rispetto delle procedure costituzionali e cooperazione con istituzioni sociali radicate.",
+    "bounds": {
+      "x": [-1.0, -0.5],
+      "y": [0.0, 1.0],
+      "z": [-1.0, -0.5]
+    },
+    "affiliazionepolitica": [
+      "Socialismo municipale scandinavo",
+      "Movimento cooperativista basco"
+    ]
+  },
+  {
+    "id": "Q5-S2",
+    "name": "Socialismo comunitario libertario - cautela istituzionale",
+    "content": "Comunitarismo egualitario che negozia riforme federaliste e mantiene un dialogo critico ma costruttivo con l'establishment.",
+    "bounds": {
+      "x": [-1.0, -0.5],
+      "y": [0.0, 1.0],
+      "z": [-0.5, 0.0]
+    },
+    "affiliazionepolitica": [
+      "Sinistra indipendentista catalana moderata",
+      "Partito della Sinistra svedese"
+    ]
+  },
+  {
+    "id": "Q5-S3",
+    "name": "Socialismo comunitario libertario - opposizione sorvegliata",
+    "content": "Autogestione e federalismo solidale accompagnati da mobilitazione di base contro élite percepite come centraliste.",
+    "bounds": {
+      "x": [-1.0, -0.5],
+      "y": [0.0, 1.0],
+      "z": [0.0, 0.5]
+    },
+    "affiliazionepolitica": [
+      "EZLN in Messico",
+      "Movimenti municipalisti iberici"
+    ]
+  },
+  {
+    "id": "Q5-S4",
+    "name": "Socialismo comunitario libertario - rottura rivoluzionaria",
+    "content": "Autogoverno assembleare radicale e abolizione delle istituzioni centrali a favore di comuni autogestite.",
+    "bounds": {
+      "x": [-1.0, -0.5],
+      "y": [0.0, 1.0],
+      "z": [0.5, 1.0]
+    },
+    "affiliazionepolitica": [
+      "Anarchismo comunista",
+      "Comuni rivoluzionarie del Rojava"
+    ]
+  },
+  {
+    "id": "Q6-S1",
+    "name": "Socialdemocrazia partecipativa - fedeltà istituzionale",
+    "content": "Riformismo socialdemocratico con diritti civili espansi, economia mista e piena fiducia nei meccanismi parlamentari.",
+    "bounds": {
+      "x": [-0.5, 0.0],
+      "y": [0.0, 1.0],
+      "z": [-1.0, -0.5]
+    },
+    "affiliazionepolitica": [
+      "Socialdemocrazia nordica",
+      "Partito Democratico USA ala liberal"
+    ]
+  },
+  {
+    "id": "Q6-S2",
+    "name": "Socialdemocrazia partecipativa - cautela istituzionale",
+    "content": "Mix di welfare universale, diritti civili e riformismo procedurale con pressioni per trasparenza e accountability.",
+    "bounds": {
+      "x": [-0.5, 0.0],
+      "y": [0.0, 1.0],
+      "z": [-0.5, 0.0]
+    },
+    "affiliazionepolitica": [
+      "Sinistra europea riformista",
+      "Partito Laburista neozelandese"
+    ]
+  },
+  {
+    "id": "Q6-S3",
+    "name": "Socialdemocrazia partecipativa - opposizione sorvegliata",
+    "content": "Movimenti progressisti che spingono per democrazia partecipativa e controlli popolari sulle élite economiche.",
+    "bounds": {
+      "x": [-0.5, 0.0],
+      "y": [0.0, 1.0],
+      "z": [0.0, 0.5]
+    },
+    "affiliazionepolitica": [
+      "Momentum nel Labour britannico",
+      "Democratic Socialists of America"
+    ]
+  },
+  {
+    "id": "Q6-S4",
+    "name": "Socialdemocrazia partecipativa - rottura rivoluzionaria",
+    "content": "Sinistra progressista che promuove assemblee popolari permanenti e rottura con l'establishment neoliberale.",
+    "bounds": {
+      "x": [-0.5, 0.0],
+      "y": [0.0, 1.0],
+      "z": [0.5, 1.0]
+    },
+    "affiliazionepolitica": [
+      "Podemos delle origini",
+      "La France Insoumise"
+    ]
+  },
+  {
+    "id": "Q7-S1",
+    "name": "Liberismo progressista - fedeltà istituzionale",
+    "content": "Mercato aperto, diritti civili e fiducia nelle istituzioni liberaldemocratiche internazionali.",
+    "bounds": {
+      "x": [0.0, 0.5],
+      "y": [0.0, 1.0],
+      "z": [-1.0, -0.5]
+    },
+    "affiliazionepolitica": [
+      "Renew Europe",
+      "Partito Liberale Canadese"
+    ]
+  },
+  {
+    "id": "Q7-S2",
+    "name": "Liberismo progressista - cautela istituzionale",
+    "content": "Liberalismo sociale con istanze di riforma e modernizzazione graduale delle strutture di potere.",
+    "bounds": {
+      "x": [0.0, 0.5],
+      "y": [0.0, 1.0],
+      "z": [-0.5, 0.0]
+    },
+    "affiliazionepolitica": [
+      "Partito Democratico italiano area riformista",
+      "Liberali sociali olandesi"
+    ]
+  },
+  {
+    "id": "Q7-S3",
+    "name": "Liberismo progressista - opposizione sorvegliata",
+    "content": "Liberalismo cosmopolita che critica le élite tradizionali e richiede trasparenza radicale nelle istituzioni.",
+    "bounds": {
+      "x": [0.0, 0.5],
+      "y": [0.0, 1.0],
+      "z": [0.0, 0.5]
+    },
+    "affiliazionepolitica": [
+      "Volt Europa",
+      "Movimenti open data e civic tech"
+    ]
+  },
+  {
+    "id": "Q7-S4",
+    "name": "Liberismo progressista - rottura rivoluzionaria",
+    "content": "Libertarismo di mercato con forte spinta anticasta e richiesta di smantellare apparati burocratici tradizionali.",
+    "bounds": {
+      "x": [0.0, 0.5],
+      "y": [0.0, 1.0],
+      "z": [0.5, 1.0]
+    },
+    "affiliazionepolitica": [
+      "Movimenti pirata",
+      "Libertari radicali europei"
+    ]
+  },
+  {
+    "id": "Q8-S1",
+    "name": "Capitalismo libertario - fedeltà istituzionale",
+    "content": "Mercato deregolamentato, diritti civili e adesione alle istituzioni repubblicane considerate garanti della libertà.",
+    "bounds": {
+      "x": [0.5, 1.0],
+      "y": [0.0, 1.0],
+      "z": [-1.0, -0.5]
+    },
+    "affiliazionepolitica": [
+      "Partito Liberale australiano ala moderata",
+      "Libertarian Party USA istituzionale"
+    ]
+  },
+  {
+    "id": "Q8-S2",
+    "name": "Capitalismo libertario - cautela istituzionale",
+    "content": "Libertarismo di mercato che negozia riforme fiscali e deregolamentazioni rispettando i contropoteri esistenti.",
+    "bounds": {
+      "x": [0.5, 1.0],
+      "y": [0.0, 1.0],
+      "z": [-0.5, 0.0]
+    },
+    "affiliazionepolitica": [
+      "Partito Libertariano USA pragmatico",
+      "Conservatori britannici liberal"
+    ]
+  },
+  {
+    "id": "Q8-S3",
+    "name": "Capitalismo libertario - opposizione sorvegliata",
+    "content": "Libertari radicali che denunciano l'apparato statale e rivendicano privatizzazioni estese con campagne anti-establishment.",
+    "bounds": {
+      "x": [0.5, 1.0],
+      "y": [0.0, 1.0],
+      "z": [0.0, 0.5]
+    },
+    "affiliazionepolitica": [
+      "Tea Party libertarian",
+      "Movimenti anarco-capitalisti europei"
+    ]
+  },
+  {
+    "id": "Q8-S4",
+    "name": "Capitalismo libertario - rottura rivoluzionaria",
+    "content": "Anarco-capitalismo totale che rifiuta l'autorità statale e propone reti private in sostituzione delle istituzioni pubbliche.",
+    "bounds": {
+      "x": [0.5, 1.0],
+      "y": [0.0, 1.0],
+      "z": [0.5, 1.0]
+    },
+    "affiliazionepolitica": [
+      "Seasteading Institute",
+      "Partiti libertari radicali panamericani"
+    ]
   }
 ]
