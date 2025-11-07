@@ -261,10 +261,21 @@ const THETA_DESCRIPTORS = [
 ];
 
 const QUADRANT_COLORS = [
-  0x174076, 0x1f5ea8, 0x2789c5, 0x2fb8d3,
-  0x315a8c, 0x3f74b0, 0x5199c9, 0x63c2d8,
-  0x4a4a82, 0x5d60a6, 0x767ec2, 0x8ea5d3,
-  0x5f3b7b, 0x7a4ea2, 0x9a6fbe, 0xb695d3
+  0xff595e, 0xff924c, 0xffca3a, 0x8ac926,
+  0x52b788, 0x1982c4, 0x6a4c93, 0xffd6a5,
+  0xffadad, 0x00bbf9, 0x3a86ff, 0x2ec4b6,
+  0x8338ec, 0xfb5607, 0xffb703, 0x006d77
+];
+
+const CARTESIAN_SECTORS = [
+  { center: [0.5, 0.5, 0.5] },
+  { center: [-0.5, 0.5, 0.5] },
+  { center: [-0.5, -0.5, 0.5] },
+  { center: [0.5, -0.5, 0.5] },
+  { center: [0.5, 0.5, -0.5] },
+  { center: [-0.5, 0.5, -0.5] },
+  { center: [-0.5, -0.5, -0.5] },
+  { center: [0.5, -0.5, -0.5] }
 ];
 
 function getEducationOptions(lang) {
@@ -1842,6 +1853,32 @@ function initCartesianPlot(mount, point, options = {}) {
     scene.add(arrow);
     const negative = new THREE.ArrowHelper(dir.clone().normalize().multiplyScalar(-1), new THREE.Vector3(0, 0, 0), axisLength, color, 0.08, 0.04);
     scene.add(negative);
+  });
+
+  const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+  const cubeEdgesGeometry = new THREE.EdgesGeometry(cubeGeometry);
+  CARTESIAN_SECTORS.forEach(({ center }) => {
+    const [cx, cy, cz] = center;
+    const { index } = quadrantFromVector(cx, cy, cz);
+    const { hex } = colorFromIndex(index);
+    const cubeMaterial = new THREE.MeshStandardMaterial({
+      color: hex,
+      transparent: true,
+      opacity: 0.18,
+      roughness: 0.55,
+      metalness: 0.05,
+      depthWrite: false
+    });
+    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.position.set(cx, cy, cz);
+    cube.renderOrder = 0;
+    scene.add(cube);
+
+    const edgeMaterial = new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: 0.65, depthWrite: false });
+    const edges = new THREE.LineSegments(cubeEdgesGeometry, edgeMaterial);
+    edges.position.set(cx, cy, cz);
+    edges.renderOrder = 1;
+    scene.add(edges);
   });
 
   const clamp = (n) => Math.max(-1, Math.min(1, Number.isFinite(n) ? n : 0));
