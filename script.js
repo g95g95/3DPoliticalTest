@@ -261,10 +261,21 @@ const THETA_DESCRIPTORS = [
 ];
 
 const QUADRANT_COLORS = [
-  0x174076, 0x1f5ea8, 0x2789c5, 0x2fb8d3,
-  0x315a8c, 0x3f74b0, 0x5199c9, 0x63c2d8,
-  0x4a4a82, 0x5d60a6, 0x767ec2, 0x8ea5d3,
-  0x5f3b7b, 0x7a4ea2, 0x9a6fbe, 0xb695d3
+  0xff595e, 0xff924c, 0xffca3a, 0x8ac926,
+  0x52b788, 0x1982c4, 0x6a4c93, 0xffd6a5,
+  0xffadad, 0x00bbf9, 0x3a86ff, 0x2ec4b6,
+  0x8338ec, 0xfb5607, 0xffb703, 0x006d77
+];
+
+const CARTESIAN_SECTORS = [
+  { center: [0.5, 0.5, 0.5] },
+  { center: [-0.5, 0.5, 0.5] },
+  { center: [-0.5, -0.5, 0.5] },
+  { center: [0.5, -0.5, 0.5] },
+  { center: [0.5, 0.5, -0.5] },
+  { center: [-0.5, 0.5, -0.5] },
+  { center: [-0.5, -0.5, -0.5] },
+  { center: [0.5, -0.5, -0.5] }
 ];
 
 function getEducationOptions(lang) {
@@ -314,6 +325,59 @@ function colorFromIndex(index) {
     hex,
     css: `#${hex.toString(16).padStart(6, '0')}`
   };
+}
+
+function parseNumericQuadrantId(id) {
+  if (Number.isFinite(id)) return Number(id);
+  if (typeof id === 'string' && id.trim()) {
+    const numeric = Number(id.trim());
+    if (Number.isFinite(numeric)) return numeric;
+  }
+  return null;
+}
+
+function rangeIncludes(value, range) {
+  if (!Array.isArray(range) || range.length < 2) return true;
+  const val = Number(value);
+  if (!Number.isFinite(val)) return false;
+  const [min, max] = range;
+  if (!Number.isFinite(min) || !Number.isFinite(max)) return false;
+  const lower = Math.min(min, max);
+  const upper = Math.max(min, max);
+  return val >= lower && val <= upper;
+}
+
+function getBoundsCenter(bounds) {
+  if (!bounds || typeof bounds !== 'object') return null;
+  let hasValue = false;
+  const center = {};
+  ['x', 'y', 'z'].forEach((axis) => {
+    const range = bounds[axis];
+    if (Array.isArray(range) && range.length >= 2) {
+      const [min, max] = range;
+      if (Number.isFinite(min) && Number.isFinite(max)) {
+        center[axis] = (min + max) / 2;
+        hasValue = true;
+      }
+    }
+  });
+  return hasValue ? center : null;
+}
+
+function distanceSquared(point, center) {
+  if (!point || !center) return Number.POSITIVE_INFINITY;
+  let total = 0;
+  let count = 0;
+  ['x', 'y', 'z'].forEach((axis) => {
+    const a = Number(point[axis]);
+    const b = Number(center[axis]);
+    if (Number.isFinite(a) && Number.isFinite(b)) {
+      const diff = a - b;
+      total += diff * diff;
+      count++;
+    }
+  });
+  return count ? total : Number.POSITIVE_INFINITY;
 }
 
 function quadrantFromVector(x, y, z) {
@@ -373,6 +437,7 @@ const ANSWER_LABELS = ['Sì molto', 'Sì', 'Non so', 'No', 'No molto'];
 const ANSWER_VALUES = [1, 0.5, 0, -0.5, -1];
 
 let QUADRANT_DATA = [];
+let quadrantsPromise = null;
 
 function componentToAxis(component) {
   if (!component) return null;
@@ -450,36 +515,90 @@ function sanitizeHistoryEntry(entry) {
   };
 }
 
-function getQuadrantDetails(index) {
+function getQuadrantDetails(index, vector) {
   if (!Array.isArray(QUADRANT_DATA) || !QUADRANT_DATA.length) return null;
-  return QUADRANT_DATA.find((q) => q && Number(q.id) === index + 1) || null;
+  const numericIndex = Number(index);
+  if (Number.isFinite(numericIndex)) {
+    const numericMatch = QUADRANT_DATA.find((entry) => {
+      if (!entry) return false;
+      const numericId = parseNumericQuadrantId(entry.id);
+      return Number.isFinite(numericId) && numericId === numericIndex + 1;
+    });
+    if (numericMatch) return numericMatch;
+  }
+
+  const vectorData = vector && typeof vector === 'object' ? vector : null;
+  if (vectorData) {
+    const candidates = QUADRANT_DATA.filter((entry) => {
+      if (!entry || typeof entry !== 'object') return false;
+      const bounds = entry.bounds || {};
+      return rangeIncludes(vectorData.x, bounds.x) && rangeIncludes(vectorData.y, bounds.y) && rangeIncludes(vectorData.z, bounds.z);
+    });
+    if (candidates.length === 1) {
+      return candidates[0];
+    }
+    if (candidates.length > 1) {
+      let best = null;
+      let bestDistance = Number.POSITIVE_INFINITY;
+      candidates.forEach((entry) => {
+        const center = getBoundsCenter(entry.bounds || {});
+        const dist = distanceSquared(vectorData, center);
+        if (dist < bestDistance) {
+          bestDistance = dist;
+          best = entry;
+        }
+      });
+      if (best) return best;
+    }
+  }
+
+  if (Number.isFinite(numericIndex) && QUADRANT_DATA[numericIndex]) {
+    return QUADRANT_DATA[numericIndex];
+  }
+  return QUADRANT_DATA[0] || null;
 }
 
 function getQuadrantLegend() {
-  if (!Array.isArray(QUADRANT_DATA) || QUADRANT_DATA.length !== 16) {
+  if (!Array.isArray(QUADRANT_DATA) || !QUADRANT_DATA.length) {
     return BASE_QUADRANT_LEGEND;
   }
   return QUADRANT_DATA.map((entry, idx) => ({
-    number: entry.id,
-    name: entry.name,
-    descriptor: entry.content,
-    bounds: entry.bounds,
-    affiliation: entry.affiliazionepolitica,
-    color: colorFromIndex(idx).css
+    number: entry?.id ?? idx + 1,
+    name: entry?.name,
+    descriptor: entry?.content,
+    bounds: entry?.bounds,
+    affiliation: entry?.affiliazionepolitica,
+    color: colorFromIndex(idx % QUADRANT_COLORS.length).css
   }));
 }
 
-async function loadQuadrants() {
-  try {
-    const res = await fetch('quadrants.json?cb=' + Date.now());
-    if (!res.ok) throw new Error(res.statusText);
-    const data = await res.json();
-    if (Array.isArray(data)) {
-      QUADRANT_DATA = data;
+function loadQuadrants() {
+  if (quadrantsPromise) {
+    return quadrantsPromise;
+  }
+  quadrantsPromise = (async () => {
+    try {
+      const res = await fetch('quadrants.json?cb=' + Date.now());
+      if (!res.ok) throw new Error(res.statusText);
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        QUADRANT_DATA = data;
+      } else {
+        QUADRANT_DATA = [];
+      }
+    } catch (err) {
+      console.warn('Impossibile caricare i dati dei quadranti', err);
+      QUADRANT_DATA = [];
     }
+  })();
+  return quadrantsPromise;
+}
+
+async function ensureQuadrantsLoaded() {
+  try {
+    await loadQuadrants();
   } catch (err) {
-    console.warn('Impossibile caricare i dati dei quadranti', err);
-    QUADRANT_DATA = [];
+    console.warn('Errore durante il caricamento dei quadranti', err);
   }
 }
 
@@ -1118,7 +1237,7 @@ function computeResults() {
   const thetaSector = Math.floor((theta / Math.PI) * 4);      // 0..3
   const quadrant16 = Math.min(phiSector * 4 + thetaSector + 1, 16);         // 1..16
   const quadrantMeta = quadrantFromVector(x, y, z);
-  const extra = getQuadrantDetails(quadrantMeta.index);
+  const extra = getQuadrantDetails(quadrantMeta.index, normalized);
   return {
     r,
     theta,
@@ -1144,10 +1263,11 @@ function computeResults() {
  *  a placeholder description.  Provides buttons to view insights,
  *  restart the test, and leave a review.
  */
-function viewResult() {
+async function viewResult() {
   state.step = 4;
   // Salva il risultato corrente la prima volta che si arriva qui
   persistCurrentResult();
+  await ensureQuadrantsLoaded();
   // Calcola il quadrante e prepara la descrizione
   const result = computeResults();
   const { quadrant16, descriptor, color, normalized } = result;
@@ -1221,9 +1341,10 @@ function viewResult() {
  * coordinates, quadrant, and a Three.js visualization.  Provides
  * buttons to go back to the minimal result and to restart the test.
  */
-function viewInsights() {
+async function viewInsights() {
   state.step = 5;
   persistCurrentResult();
+  await ensureQuadrantsLoaded();
   const res = computeResults();
   const { r, phiDeg, thetaDeg, quadrant16, descriptor, color, normalized, raw, quadrantInfo, rawRadius } = res;
   const totals = state.weightTotals || { economia: 0, dirittocivilismo: 0, establishment: 0 };
@@ -1234,10 +1355,22 @@ function viewInsights() {
     { key: 'establishment', label: 'Establishment', value: normalized.z, raw: raw.z, total: totals.establishment }
   ];
   const formatBounds = (bounds) => {
-    if (!bounds) return '';
+    if (!bounds || typeof bounds !== 'object') return '';
     const phi = Array.isArray(bounds.phi) ? `φ ${round(bounds.phi[0])}° – ${round(bounds.phi[1])}°` : '';
     const theta = Array.isArray(bounds.theta) ? `θ ${round(bounds.theta[0])}° – ${round(bounds.theta[1])}°` : '';
-    return [phi, theta].filter(Boolean).join(' · ');
+    const spherical = [phi, theta].filter(Boolean);
+    if (spherical.length) {
+      return spherical.join(' · ');
+    }
+    const axisLabels = { x: 'x', y: 'y', z: 'z' };
+    const cartesian = Object.entries(axisLabels).map(([axis, label]) => {
+      const range = bounds[axis];
+      if (!Array.isArray(range) || range.length < 2) return '';
+      const [min, max] = range;
+      if (!Number.isFinite(min) || !Number.isFinite(max)) return '';
+      return `${label}: ${round(min)} – ${round(max)}`;
+    }).filter(Boolean);
+    return cartesian.join(' · ');
   };
   const affiliations = quadrantInfo?.affiliazionepolitica;
   const affiliationList = Array.isArray(affiliations) ? affiliations : (affiliations ? [affiliations] : []);
@@ -1720,6 +1853,32 @@ function initCartesianPlot(mount, point, options = {}) {
     scene.add(arrow);
     const negative = new THREE.ArrowHelper(dir.clone().normalize().multiplyScalar(-1), new THREE.Vector3(0, 0, 0), axisLength, color, 0.08, 0.04);
     scene.add(negative);
+  });
+
+  const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+  const cubeEdgesGeometry = new THREE.EdgesGeometry(cubeGeometry);
+  CARTESIAN_SECTORS.forEach(({ center }) => {
+    const [cx, cy, cz] = center;
+    const { index } = quadrantFromVector(cx, cy, cz);
+    const { hex } = colorFromIndex(index);
+    const cubeMaterial = new THREE.MeshStandardMaterial({
+      color: hex,
+      transparent: true,
+      opacity: 0.18,
+      roughness: 0.55,
+      metalness: 0.05,
+      depthWrite: false
+    });
+    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.position.set(cx, cy, cz);
+    cube.renderOrder = 0;
+    scene.add(cube);
+
+    const edgeMaterial = new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: 0.65, depthWrite: false });
+    const edges = new THREE.LineSegments(cubeEdgesGeometry, edgeMaterial);
+    edges.position.set(cx, cy, cz);
+    edges.renderOrder = 1;
+    scene.add(edges);
   });
 
   const clamp = (n) => Math.max(-1, Math.min(1, Number.isFinite(n) ? n : 0));
