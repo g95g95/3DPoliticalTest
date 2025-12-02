@@ -946,7 +946,7 @@ function viewWelcome() {
         Inserisci il tuo nome per iniziare. Le tue risposte definiranno la tua posizione nella sfera politica.
       </p>
       <div class="mt-6 space-y-3">
-        <input id="name" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Il tuo nome" />
+        <input id="name" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none bg-white text-gray-900 placeholder-gray-400" placeholder="Il tuo nome" />
         <button id="goName" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg px-4 py-3 transition">
           Conferma
         </button>
@@ -982,22 +982,22 @@ function viewProfile() {
       <h2 class="text-2xl font-bold text-gray-900 mb-1">Ciao, ${escapeHtml(state.name)} 👋</h2>
       <p class="text-gray-600 mb-6">Ora completa questi dati.</p>
       <div class="grid gap-4">
-        <input id="profession" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="${escapeHtml(copy.professionPlaceholder)}" value="${escapeHtml(state.profession)}" />
+        <input id="profession" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none bg-white text-gray-900 placeholder-gray-400" placeholder="${escapeHtml(copy.professionPlaceholder)}" value="${escapeHtml(state.profession)}" />
         <div class="flex flex-col gap-1">
           <label for="education" class="text-sm font-semibold text-gray-700">${escapeHtml(copy.educationLabel)}</label>
-          <select id="education" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
+          <select id="education" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none bg-white text-gray-900">
             <option value="">${escapeHtml(copy.educationPlaceholder)}</option>
             ${educationOptions.map(({ value, label }) => `<option value="${value}" ${state.education === value ? 'selected' : ''}>${escapeHtml(label)}</option>`).join('')}
           </select>
         </div>
         <div id="interestWrapper" class="flex flex-col gap-1 ${showInterest ? '' : 'hidden'}">
           <label for="interest" class="text-sm font-semibold text-gray-700">${escapeHtml(copy.interestLabel)}</label>
-          <select id="interest" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
+          <select id="interest" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none bg-white text-gray-900">
             <option value="">${escapeHtml(copy.interestPlaceholder)}</option>
             ${interestOptions.map(({ value, label }) => `<option value="${value}" ${state.area === value ? 'selected' : ''}>${escapeHtml(label)}</option>`).join('')}
           </select>
         </div>
-        <input id="dob" type="date" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" value="${state.dob}" />
+        <input id="dob" type="date" class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none bg-white text-gray-900" value="${state.dob}" />
         <p id="profileError" class="text-sm text-rose-600 ${state.profileError ? '' : 'hidden'}">${state.profileError ? escapeHtml(state.profileError) : ''}</p>
       </div>
       <div class="mt-6 flex gap-3">
@@ -1134,7 +1134,7 @@ function viewQuiz() {
       <div class="grid md:grid-cols-5 gap-3">
         ${ANSWER_LABELS.map((lbl, i) => {
           const value = ANSWER_VALUES[i];
-          return `<button data-v="${value}" class="ans bg-white border border-gray-300 hover:border-indigo-500 hover:shadow-sm rounded-lg px-3 py-3 text-sm font-medium">${lbl}</button>`;
+          return `<button data-v="${value}" class="ans bg-white border border-gray-300 hover:border-indigo-500 hover:shadow-sm rounded-lg px-3 py-3 text-sm font-medium text-gray-900">${lbl}</button>`;
         }).join('')}
       </div>
       <div class="mt-6 flex justify-between">
@@ -1296,7 +1296,7 @@ async function viewResult() {
       </div>
       <div class="mt-8">
         <h4 class="text-lg font-semibold mb-2">Lascia una recensione</h4>
-        <textarea id="reviewInput" class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="La tua recensione..."></textarea>
+        <textarea id="reviewInput" class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-indigo-500 outline-none bg-white text-gray-900 placeholder-gray-400" placeholder="La tua recensione..."></textarea>
         <button id="submitReview" class="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg px-4 py-2">Invia recensione</button>
         <p id="reviewMsg" class="text-sm mt-2"></p>
       </div>
@@ -1534,13 +1534,13 @@ async function viewInsights() {
         <div class="grid md:grid-cols-2 gap-4">
           <div class="flex flex-col gap-1">
             <label for="filterProfession" class="text-sm font-medium text-gray-700">${escapeHtml(insightsCopy.professionFilter)}</label>
-            <select id="filterProfession" class="rounded-lg border border-gray-300 px-4 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+            <select id="filterProfession" class="rounded-lg border border-gray-300 px-4 py-2 bg-white text-gray-900 focus:ring-2 focus:ring-indigo-500 outline-none">
               ${professionOptions.join('')}
             </select>
           </div>
           <div class="flex flex-col gap-1">
             <label for="filterEducation" class="text-sm font-medium text-gray-700">${escapeHtml(insightsCopy.educationFilter)}</label>
-            <select id="filterEducation" class="rounded-lg border border-gray-300 px-4 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+            <select id="filterEducation" class="rounded-lg border border-gray-300 px-4 py-2 bg-white text-gray-900 focus:ring-2 focus:ring-indigo-500 outline-none">
               ${educationOptions.join('')}
             </select>
           </div>
